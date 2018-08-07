@@ -1,6 +1,7 @@
 # contracts_library
 
 this is a smart contract library
+## THANKS
 
 ## Contributing
 
