@@ -1,3 +1,0 @@
-*.html linguist-detectable=false
-*.go linguist-detectable=false
-*.sol linguist-language=Solidity

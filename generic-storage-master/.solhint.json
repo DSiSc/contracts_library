@@ -1,8 +1,0 @@
-{
-  "extends": "default",
-  "rules": {
-    "indent": ["warn", 2],
-    "func-order": false,
-    "max-line-length": 200
-  }
-}
