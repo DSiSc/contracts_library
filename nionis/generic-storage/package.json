@@ -1,0 +1,25 @@
+{
+  "name": "generic-storage",
+  "version": "1.0.0",
+  "description": "Simple generic storage for solidity",
+  "author": "Steven Noni",
+  "license": "ISC",
+  "dependencies": {
+    "solidity-utils": "^1.0.0",
+    "zeppelin-solidity": "^1.7.0"
+  },
+  "devDependencies": {
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "babel-preset-stage-3": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "eslint": "^4.18.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.7.0",
+    "truffle": "^4.0.7",
+    "web3-utils": "^1.0.0-beta.30"
+  }
+}

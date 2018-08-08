@@ -1,0 +1,42 @@
+{
+  "name": "channel-gravy-token",
+  "version": "0.0.1",
+  "description": "Get gravy out of using payment channels ",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rm -rf ./build",
+    "sol-lint": "solhint --formatter ../../../eslint-formatter-stylish-verbose contracts/*.sol contracts/**/*.sol",
+    "sol-compile": "truffle compile",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm run clean && npm run sol-compile",
+    "prepublishOnly": "npm install && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jacquesd/channel-gravy-token.git"
+  },
+  "keywords": [
+    "ERC777",
+    "Token",
+    "Payment Channel",
+    "State Channel",
+    "ETH",
+    "Ethereum"
+  ],
+  "author": "Jacques Dafflon",
+  "license": "LGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/jacquesd/channel-gravy-token/issues"
+  },
+  "homepage": "https://github.com/jacquesd/channel-gravy-token#readme",
+  "dependencies": {
+    "eip820": "0.0.20",
+    "erc777": "0.1.0",
+    "giveth-common-contracts": "0.6.0",
+    "truffle": "4.1.3"
+  },
+  "devDependencies": {
+    "eslint-formatter-stylish-verbose": "0.0.1",
+    "solhint": "^1.1.10"
+  }
+}
