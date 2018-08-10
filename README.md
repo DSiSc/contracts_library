@@ -12,6 +12,7 @@ This repository collects other open source smart contracts reposity from GitHub.
 * https://github.com/fivedogit/solidity-baby-steps
 * https://github.com/fravoll/solidity-patterns
 * https://github.com/jacquesd/channel-gravy-token
+* https://github.com/jbaylina/eip820
 * https://github.com/jdowning100/CryptoZombies
 * https://github.com/maheshmurthy/ethereum_voting_dapp
 * https://github.com/nionis/generic-storage

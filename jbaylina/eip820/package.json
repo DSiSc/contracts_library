@@ -1,0 +1,52 @@
+{
+  "name": "eip820",
+  "version": "0.0.21",
+  "description": "EIP 820 - Pseudo-introspaection using a registry contract",
+  "main": "index.js",
+  "files": [
+    "build",
+    "js",
+    "contracts"
+  ],
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "npm run build; mocha --harmony --exit",
+    "sol-compile": "solcpiler -i './contracts/*.sol' --solc-version=\"v0.4.24+commit.e67f0147\"",
+    "build": "npm run sol-compile",
+    "prepublish": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jbaylina/eip820.git"
+  },
+  "keywords": [
+    "solidity",
+    "pseudo-introspaection",
+    "eip672",
+    "eip820",
+    "smart",
+    "contract",
+    "reverseENS",
+    "ethereum"
+  ],
+  "author": "Jordi Baylina",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/jbaylina/eip820/issues"
+  },
+  "homepage": "https://eips.ethereum.org/EIPS/eip-820",
+  "dependencies": {
+    "eth-contract-class": "0.0.8",
+    "ethereumjs-tx": "^1.3.3",
+    "ethereumjs-util": "^5.1.3",
+    "web3": "1.0.0-beta.29"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "ganache-cli": "^7.0.0-beta.0",
+    "mocha": "^4.1.0",
+    "solcpiler": "0.0.17"
+  }
+}
