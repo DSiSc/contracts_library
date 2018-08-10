@@ -13,6 +13,7 @@ This repository collects other open source smart contracts reposity from GitHub.
 * https://github.com/fravoll/solidity-patterns
 * https://github.com/jacquesd/channel-gravy-token
 * https://github.com/jacquesd/ERC777
+* https://github.com/Giveth/common-contract-deps
 * https://github.com/jbaylina/eip820
 * https://github.com/jdowning100/CryptoZombies
 * https://github.com/maheshmurthy/ethereum_voting_dapp
