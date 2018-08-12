@@ -1,0 +1,9 @@
+{
+  "extends": "default",
+  "rules": {
+    "indent": ["warn", 2],
+    "func-order": false,
+    "compiler-fixed": false,
+    "max-line-length": 200
+  }
+}
