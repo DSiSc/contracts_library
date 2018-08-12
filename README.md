@@ -7,9 +7,14 @@ This repository collects other open source smart contracts reposity from GitHub.
 * https://github.com/Arachnid/solidity-stringutils
 * https://github.com/OpenZeppelin/openzeppelin-solidity
 * https://github.com/ShubhamTatvamasi/LoopDefender
+* https://github.com/ethereum/solc-js
+* https://github.com/ethereum/solidity-examples
 * https://github.com/fivedogit/solidity-baby-steps
 * https://github.com/fravoll/solidity-patterns
 * https://github.com/jacquesd/channel-gravy-token
+* https://github.com/jacquesd/ERC777
+* https://github.com/Giveth/common-contract-deps
+* https://github.com/jbaylina/eip820
 * https://github.com/jdowning100/CryptoZombies
 * https://github.com/maheshmurthy/ethereum_voting_dapp
 * https://github.com/nionis/generic-storage
