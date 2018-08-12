@@ -18,6 +18,7 @@ This repository collects other open source smart contracts reposity from GitHub.
 * https://github.com/jdowning100/CryptoZombies
 * https://github.com/maheshmurthy/ethereum_voting_dapp
 * https://github.com/nionis/generic-storage
+* https://github.com/nionis/nionis/solidity-utils
 * https://github.com/ram1991/Solidity-Smart-contracts
 * https://github.com/vcinly/TheNineBillionNamesOfGod
 * https://github.com/willitscale/learning-solidity
