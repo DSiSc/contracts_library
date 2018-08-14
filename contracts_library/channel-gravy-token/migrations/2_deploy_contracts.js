@@ -44,6 +44,7 @@ var willitscaleLearningSolidityTutorial16AlarmTrigger = artifacts.require("./wil
 var willitscaleLearningSolidityTutorial06DataTypes = artifacts.require("./willitscale/learning-solidity/tutorial-06/DataTypes.sol");
 var willitscaleLearningSolidityTutorial24MultiSigWallet = artifacts.require("./willitscale/learning-solidity/tutorial-24/MultiSigWallet.sol");
 
+var vcinlyTheNineBillionNamesOfGodnine = artifacts.require("./vcinly/TheNineBillionNamesOfGod/Nine.sol");
 
 const sigUtil = require("eth-sig-util")
 
@@ -108,4 +109,6 @@ module.exports = function(deployer) {
   deployer.deploy(willitscaleLearningSolidityTutorial16AlarmTrigger);
   deployer.deploy(willitscaleLearningSolidityTutorial06DataTypes);
   deployer.deploy(willitscaleLearningSolidityTutorial24MultiSigWallet);
+
+  deployer.deploy(vcinlyTheNineBillionNamesOfGodnine);
 };
