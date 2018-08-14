@@ -1,0 +1,1387 @@
+{
+  "contractName": "CreatorBalanceChecker",
+  "abi": [
+    {
+      "inputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "getContractAddress",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "getCreatorBalance",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "getCreatorDotBalance",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "kill",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x608060405234801561001057600080fd5b50336000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055506000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163160018190555061023a8061009f6000396000f300608060405260043610610062576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806332a2c5d01461006757806341c0e1b5146100be578063a4325485146100d5578063f363441f14610100575b600080fd5b34801561007357600080fd5b5061007c61012b565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b3480156100ca57600080fd5b506100d3610133565b005b3480156100e157600080fd5b506100ea6101c4565b6040518082815260200191505060405180910390f35b34801561010c57600080fd5b506101156101ce565b6040518082815260200191505060405180910390f35b600030905090565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614156101c2576000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16ff5b565b6000600154905090565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16319050905600a165627a7a723058202b30faf084ce04cc795987ecb0a1de3b18e079701a071d20096360bea9de655f0029",
+  "deployedBytecode": "0x608060405260043610610062576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806332a2c5d01461006757806341c0e1b5146100be578063a4325485146100d5578063f363441f14610100575b600080fd5b34801561007357600080fd5b5061007c61012b565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b3480156100ca57600080fd5b506100d3610133565b005b3480156100e157600080fd5b506100ea6101c4565b6040518082815260200191505060405180910390f35b34801561010c57600080fd5b506101156101ce565b6040518082815260200191505060405180910390f35b600030905090565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614156101c2576000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16ff5b565b6000600154905090565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16319050905600a165627a7a723058202b30faf084ce04cc795987ecb0a1de3b18e079701a071d20096360bea9de655f0029",
+  "sourceMap": "277:976:128:-;;;424:161;8:9:-1;5:2;;;30:1;27;20:12;5:2;424:161:128;489:10;479:7;;:20;;;;;;;;;;;;;;;;;;563:7;;;;;;;;;;;:15;;;546:14;:32;;;;277:976;;;;;;",
+  "deployedSourceMap": "277:976:128:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;588:78;;8:9:-1;5:2;;;30:1;27;20:12;5:2;588:78:128;;;;;;;;;;;;;;;;;;;;;;;;;;;1083:159;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1083:159:128;;;;;;669:171;;8:9:-1;5:2;;;30:1;27;20:12;5:2;669:171:128;;;;;;;;;;;;;;;;;;;;;;;850:137;;8:9:-1;5:2;;;30:1;27;20:12;5:2;850:137:128;;;;;;;;;;;;;;;;;;;;;;;588:78;636:7;658:4;651:11;;588:78;:::o;1083:159::-;1132:7;;;;;;;;;;;1118:21;;:10;:21;;;1114:55;;;1161:7;;;;;;;;;;;1153:16;;;1114:55;1083:159::o;669:171::-;716:4;819:14;;812:21;;669:171;:::o;850:137::-;900:4;965:7;;;;;;;;;;;:15;;;958:22;;850:137;:::o",
+  "source": "/* \n\tAnother very basic contract. It demonstrates that a contract can retrieve and store the \n\tbalance of its creator address. Note that the creatorbalance value captured in the constructor is a snapshot in time.\n\tLater on, creator.balance will reflect whatever it is now.\n*/\n\ncontract CreatorBalanceChecker {\n\n    address creator;\n    uint creatorbalance; \t\t// TIP: uint is an alias for uint256. Ditto int and int256.\n\n    function CreatorBalanceChecker() public \n    {\n        creator = msg.sender; \t\t\t\t\t\t\t\t // msg is a global variable\n        creatorbalance = creator.balance;\n    }\n\n\tfunction getContractAddress() constant returns (address) \n\t{\n\t\treturn this;\n\t}\n\n\tfunction getCreatorBalance() constant returns (uint)     // Will return the creator's balance AT THE TIME THIS CONTRACT WAS CREATED\n\t{\n        return creatorbalance;\n    }\n    \n    function getCreatorDotBalance() constant returns (uint)  // Will return creator's balance NOW\n    {\n        return creator.balance;\n    }\n    \n    /**********\n     Standard kill() function to recover funds \n     **********/\n    \n    function kill()\n    { \n        if (msg.sender == creator)\n            suicide(creator);  // kills this contract and sends remaining funds back to creator\n    }\n        \n}",
+  "sourcePath": "/home/liweibo/code/solidity/contracts_library/contracts_library/contracts/fivedogit/solidity-baby-steps/contracts/CreatorBalanceChecker.sol",
+  "ast": {
+    "absolutePath": "/home/liweibo/code/solidity/contracts_library/contracts_library/contracts/fivedogit/solidity-baby-steps/contracts/CreatorBalanceChecker.sol",
+    "exportedSymbols": {
+      "CreatorBalanceChecker": [
+        13481
+      ]
+    },
+    "id": 13482,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 13481,
+        "linearizedBaseContracts": [
+          13481
+        ],
+        "name": "CreatorBalanceChecker",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 13426,
+            "name": "creator",
+            "nodeType": "VariableDeclaration",
+            "scope": 13481,
+            "src": "315:15:128",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address",
+              "typeString": "address"
+            },
+            "typeName": {
+              "id": 13425,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "315:7:128",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 13428,
+            "name": "creatorbalance",
+            "nodeType": "VariableDeclaration",
+            "scope": 13481,
+            "src": "336:19:128",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 13427,
+              "name": "uint",
+              "nodeType": "ElementaryTypeName",
+              "src": "336:4:128",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 13441,
+              "nodeType": "Block",
+              "src": "469:116:128",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 13434,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 13431,
+                      "name": "creator",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 13426,
+                      "src": "479:7:128",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 13432,
+                        "name": "msg",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 27338,
+                        "src": "489:3:128",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_magic_message",
+                          "typeString": "msg"
+                        }
+                      },
+                      "id": 13433,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "sender",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "489:10:128",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "src": "479:20:128",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "id": 13435,
+                  "nodeType": "ExpressionStatement",
+                  "src": "479:20:128"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 13439,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 13436,
+                      "name": "creatorbalance",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 13428,
+                      "src": "546:14:128",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 13437,
+                        "name": "creator",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 13426,
+                        "src": "563:7:128",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "id": 13438,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "balance",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "563:15:128",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "546:32:128",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 13440,
+                  "nodeType": "ExpressionStatement",
+                  "src": "546:32:128"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 13442,
+            "implemented": true,
+            "isConstructor": true,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "CreatorBalanceChecker",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 13429,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "454:2:128"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 13430,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "469:0:128"
+            },
+            "scope": 13481,
+            "src": "424:161:128",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 13449,
+              "nodeType": "Block",
+              "src": "647:19:128",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 13447,
+                    "name": "this",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 27629,
+                    "src": "658:4:128",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_CreatorBalanceChecker_$13481",
+                      "typeString": "contract CreatorBalanceChecker"
+                    }
+                  },
+                  "functionReturnParameters": 13446,
+                  "id": 13448,
+                  "nodeType": "Return",
+                  "src": "651:11:128"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 13450,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "getContractAddress",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 13443,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "615:2:128"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 13446,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 13445,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 13450,
+                  "src": "636:7:128",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 13444,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "636:7:128",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "635:9:128"
+            },
+            "scope": 13481,
+            "src": "588:78:128",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 13457,
+              "nodeType": "Block",
+              "src": "802:38:128",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 13455,
+                    "name": "creatorbalance",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 13428,
+                    "src": "819:14:128",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 13454,
+                  "id": 13456,
+                  "nodeType": "Return",
+                  "src": "812:21:128"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 13458,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "getCreatorBalance",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 13451,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "695:2:128"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 13454,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 13453,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 13458,
+                  "src": "716:4:128",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 13452,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "716:4:128",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "715:6:128"
+            },
+            "scope": 13481,
+            "src": "669:171:128",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 13466,
+              "nodeType": "Block",
+              "src": "948:39:128",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "expression": {
+                      "argumentTypes": null,
+                      "id": 13463,
+                      "name": "creator",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 13426,
+                      "src": "965:7:128",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 13464,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "memberName": "balance",
+                    "nodeType": "MemberAccess",
+                    "referencedDeclaration": null,
+                    "src": "965:15:128",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 13462,
+                  "id": 13465,
+                  "nodeType": "Return",
+                  "src": "958:22:128"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 13467,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "getCreatorDotBalance",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 13459,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "879:2:128"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 13462,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 13461,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 13467,
+                  "src": "900:4:128",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 13460,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "900:4:128",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "899:6:128"
+            },
+            "scope": 13481,
+            "src": "850:137:128",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 13479,
+              "nodeType": "Block",
+              "src": "1103:139:128",
+              "statements": [
+                {
+                  "condition": {
+                    "argumentTypes": null,
+                    "commonType": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    },
+                    "id": 13473,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "argumentTypes": null,
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 13470,
+                        "name": "msg",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 27338,
+                        "src": "1118:3:128",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_magic_message",
+                          "typeString": "msg"
+                        }
+                      },
+                      "id": 13471,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "sender",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "1118:10:128",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "==",
+                    "rightExpression": {
+                      "argumentTypes": null,
+                      "id": 13472,
+                      "name": "creator",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 13426,
+                      "src": "1132:7:128",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "src": "1118:21:128",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "falseBody": null,
+                  "id": 13478,
+                  "nodeType": "IfStatement",
+                  "src": "1114:55:128",
+                  "trueBody": {
+                    "expression": {
+                      "argumentTypes": null,
+                      "arguments": [
+                        {
+                          "argumentTypes": null,
+                          "id": 13475,
+                          "name": "creator",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 13426,
+                          "src": "1161:7:128",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        ],
+                        "id": 13474,
+                        "name": "suicide",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 27349,
+                        "src": "1153:7:128",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_function_selfdestruct_nonpayable$_t_address_$returns$__$",
+                          "typeString": "function (address)"
+                        }
+                      },
+                      "id": 13476,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "functionCall",
+                      "lValueRequested": false,
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "1153:16:128",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_tuple$__$",
+                        "typeString": "tuple()"
+                      }
+                    },
+                    "id": 13477,
+                    "nodeType": "ExpressionStatement",
+                    "src": "1153:16:128"
+                  }
+                }
+              ]
+            },
+            "documentation": "********\nStandard kill() function to recover funds *********",
+            "id": 13480,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "kill",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 13468,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1096:2:128"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 13469,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1103:0:128"
+            },
+            "scope": 13481,
+            "src": "1083:159:128",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 13482,
+        "src": "277:976:128"
+      }
+    ],
+    "src": "277:976:128"
+  },
+  "legacyAST": {
+    "absolutePath": "/home/liweibo/code/solidity/contracts_library/contracts_library/contracts/fivedogit/solidity-baby-steps/contracts/CreatorBalanceChecker.sol",
+    "exportedSymbols": {
+      "CreatorBalanceChecker": [
+        13481
+      ]
+    },
+    "id": 13482,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 13481,
+        "linearizedBaseContracts": [
+          13481
+        ],
+        "name": "CreatorBalanceChecker",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 13426,
+            "name": "creator",
+            "nodeType": "VariableDeclaration",
+            "scope": 13481,
+            "src": "315:15:128",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address",
+              "typeString": "address"
+            },
+            "typeName": {
+              "id": 13425,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "315:7:128",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 13428,
+            "name": "creatorbalance",
+            "nodeType": "VariableDeclaration",
+            "scope": 13481,
+            "src": "336:19:128",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 13427,
+              "name": "uint",
+              "nodeType": "ElementaryTypeName",
+              "src": "336:4:128",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 13441,
+              "nodeType": "Block",
+              "src": "469:116:128",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 13434,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 13431,
+                      "name": "creator",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 13426,
+                      "src": "479:7:128",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 13432,
+                        "name": "msg",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 27338,
+                        "src": "489:3:128",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_magic_message",
+                          "typeString": "msg"
+                        }
+                      },
+                      "id": 13433,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "sender",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "489:10:128",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "src": "479:20:128",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "id": 13435,
+                  "nodeType": "ExpressionStatement",
+                  "src": "479:20:128"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 13439,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 13436,
+                      "name": "creatorbalance",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 13428,
+                      "src": "546:14:128",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 13437,
+                        "name": "creator",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 13426,
+                        "src": "563:7:128",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "id": 13438,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "balance",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "563:15:128",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "546:32:128",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 13440,
+                  "nodeType": "ExpressionStatement",
+                  "src": "546:32:128"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 13442,
+            "implemented": true,
+            "isConstructor": true,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "CreatorBalanceChecker",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 13429,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "454:2:128"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 13430,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "469:0:128"
+            },
+            "scope": 13481,
+            "src": "424:161:128",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 13449,
+              "nodeType": "Block",
+              "src": "647:19:128",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 13447,
+                    "name": "this",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 27629,
+                    "src": "658:4:128",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_CreatorBalanceChecker_$13481",
+                      "typeString": "contract CreatorBalanceChecker"
+                    }
+                  },
+                  "functionReturnParameters": 13446,
+                  "id": 13448,
+                  "nodeType": "Return",
+                  "src": "651:11:128"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 13450,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "getContractAddress",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 13443,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "615:2:128"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 13446,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 13445,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 13450,
+                  "src": "636:7:128",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 13444,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "636:7:128",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "635:9:128"
+            },
+            "scope": 13481,
+            "src": "588:78:128",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 13457,
+              "nodeType": "Block",
+              "src": "802:38:128",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 13455,
+                    "name": "creatorbalance",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 13428,
+                    "src": "819:14:128",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 13454,
+                  "id": 13456,
+                  "nodeType": "Return",
+                  "src": "812:21:128"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 13458,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "getCreatorBalance",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 13451,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "695:2:128"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 13454,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 13453,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 13458,
+                  "src": "716:4:128",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 13452,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "716:4:128",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "715:6:128"
+            },
+            "scope": 13481,
+            "src": "669:171:128",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 13466,
+              "nodeType": "Block",
+              "src": "948:39:128",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "expression": {
+                      "argumentTypes": null,
+                      "id": 13463,
+                      "name": "creator",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 13426,
+                      "src": "965:7:128",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 13464,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "memberName": "balance",
+                    "nodeType": "MemberAccess",
+                    "referencedDeclaration": null,
+                    "src": "965:15:128",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 13462,
+                  "id": 13465,
+                  "nodeType": "Return",
+                  "src": "958:22:128"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 13467,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "getCreatorDotBalance",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 13459,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "879:2:128"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 13462,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 13461,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 13467,
+                  "src": "900:4:128",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 13460,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "900:4:128",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "899:6:128"
+            },
+            "scope": 13481,
+            "src": "850:137:128",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 13479,
+              "nodeType": "Block",
+              "src": "1103:139:128",
+              "statements": [
+                {
+                  "condition": {
+                    "argumentTypes": null,
+                    "commonType": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    },
+                    "id": 13473,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "argumentTypes": null,
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 13470,
+                        "name": "msg",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 27338,
+                        "src": "1118:3:128",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_magic_message",
+                          "typeString": "msg"
+                        }
+                      },
+                      "id": 13471,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "sender",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "1118:10:128",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "==",
+                    "rightExpression": {
+                      "argumentTypes": null,
+                      "id": 13472,
+                      "name": "creator",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 13426,
+                      "src": "1132:7:128",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "src": "1118:21:128",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "falseBody": null,
+                  "id": 13478,
+                  "nodeType": "IfStatement",
+                  "src": "1114:55:128",
+                  "trueBody": {
+                    "expression": {
+                      "argumentTypes": null,
+                      "arguments": [
+                        {
+                          "argumentTypes": null,
+                          "id": 13475,
+                          "name": "creator",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 13426,
+                          "src": "1161:7:128",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        ],
+                        "id": 13474,
+                        "name": "suicide",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 27349,
+                        "src": "1153:7:128",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_function_selfdestruct_nonpayable$_t_address_$returns$__$",
+                          "typeString": "function (address)"
+                        }
+                      },
+                      "id": 13476,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "functionCall",
+                      "lValueRequested": false,
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "1153:16:128",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_tuple$__$",
+                        "typeString": "tuple()"
+                      }
+                    },
+                    "id": 13477,
+                    "nodeType": "ExpressionStatement",
+                    "src": "1153:16:128"
+                  }
+                }
+              ]
+            },
+            "documentation": "********\nStandard kill() function to recover funds *********",
+            "id": 13480,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "kill",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 13468,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1096:2:128"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 13469,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1103:0:128"
+            },
+            "scope": 13481,
+            "src": "1083:159:128",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 13482,
+        "src": "277:976:128"
+      }
+    ],
+    "src": "277:976:128"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.24+commit.e67f0147.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "2.0.1",
+  "updatedAt": "2018-08-14T07:39:20.623Z"
+}

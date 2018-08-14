@@ -1,0 +1,1227 @@
+{
+  "contractName": "NestedArrays",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "getArray",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_array",
+          "type": "uint256[]"
+        }
+      ],
+      "name": "toBytes",
+      "outputs": [
+        {
+          "name": "_ptr",
+          "type": "bytes"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_bytes",
+          "type": "bytes"
+        }
+      ],
+      "name": "toArray",
+      "outputs": [
+        {
+          "name": "_ptr",
+          "type": "uint256[]"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x608060405234801561001057600080fd5b506103b3806100206000396000f300608060405260043610610057576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806337e3f6b61461005c5780634c2324bb1461011a578063d504ea1d146101f9575b600080fd5b34801561006857600080fd5b506100c3600480360381019080803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509192919290505050610210565b6040518080602001828103825283818151815260200191508051906020019060200280838360005b838110156101065780820151818401526020810190506100eb565b505050509050019250505060405180910390f35b34801561012657600080fd5b5061017e60048036038101908080359060200190820180359060200190808060200260200160405190810160405280939291908181526020018383602002808284378201915050505050509192919290505050610258565b6040518080602001828103825283818151815260200191508051906020019080838360005b838110156101be5780820151818401526020810190506101a3565b50505050905090810190601f1680156101eb5780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b34801561020557600080fd5b5061020e6102ad565b005b6060604082015159915080825260005b8082146102455760208102606001840151602080830201840152600181019050610220565b6040602083020183016040525050919050565b6060815159915060206002820102825260208083015280604083015260005b80821461029d576020810260200184015160606020830201840152600181019050610277565b6020808302016040525050919050565b6000606060405190810160405280600160ff168152602001600260ff168152602001600360ff1681525090806001815401808255809150509060018203906000526020600020016000909192909190915090600361030c929190610310565b5050565b828054828255906000526020600020908101928215610351579160200282015b82811115610350578251829060ff16905591602001919060010190610330565b5b50905061035e9190610362565b5090565b61038491905b80821115610380576000816000905550600101610368565b5090565b905600a165627a7a72305820c35a8ac51d23937d96be217f341ab0733fc621ec97727d1b01b08efed54936ec0029",
+  "deployedBytecode": "0x608060405260043610610057576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806337e3f6b61461005c5780634c2324bb1461011a578063d504ea1d146101f9575b600080fd5b34801561006857600080fd5b506100c3600480360381019080803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509192919290505050610210565b6040518080602001828103825283818151815260200191508051906020019060200280838360005b838110156101065780820151818401526020810190506100eb565b505050509050019250505060405180910390f35b34801561012657600080fd5b5061017e60048036038101908080359060200190820180359060200190808060200260200160405190810160405280939291908181526020018383602002808284378201915050505050509192919290505050610258565b6040518080602001828103825283818151815260200191508051906020019080838360005b838110156101be5780820151818401526020810190506101a3565b50505050905090810190601f1680156101eb5780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b34801561020557600080fd5b5061020e6102ad565b005b6060604082015159915080825260005b8082146102455760208102606001840151602080830201840152600181019050610220565b6040602083020183016040525050919050565b6060815159915060206002820102825260208083015280604083015260005b80821461029d576020810260200184015160606020830201840152600181019050610277565b6020808302016040525050919050565b6000606060405190810160405280600160ff168152602001600260ff168152602001600360ff1681525090806001815401808255809150509060018203906000526020600020016000909192909190915090600361030c929190610310565b5050565b828054828255906000526020600020908101928215610351579160200282015b82811115610350578251829060ff16905591602001919060010190610330565b5b50905061035e9190610362565b5090565b61038491905b80821115610380576000816000905550600101610368565b5090565b905600a165627a7a72305820c35a8ac51d23937d96be217f341ab0733fc621ec97727d1b01b08efed54936ec0029",
+  "sourceMap": "25:3019:220:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;25:3019:220;;;;;;;",
+  "deployedSourceMap": "25:3019:220:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2308:731;;8:9:-1;5:2;;;30:1;27;20:12;5:2;2308:731:220;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;2308:731:220;;;;;;;;;;;;;;;;;174:771;;8:9:-1;5:2;;;30:1;27;20:12;5:2;174:771:220;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;174:771:220;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;84:64;;8:9:-1;5:2;;;30:1;27;20:12;5:2;84:64:220;;;;;;2308:731;2371:11;2584:4;2576:6;2572:17;2566:24;2611:7;2603:15;;2678:3;2672:4;2665:17;2719:1;2733:4;2770:3;2765;2762:12;2757:3;2751:24;2868:4;2863:3;2859:14;2853:4;2849:25;2841:6;2837:38;2831:45;2823:4;2817;2813:3;2809:13;2805:23;2799:4;2795:34;2788:89;2906:1;2901:3;2897:11;2890:18;;2926:4;2921:10;2957:3;3016:4;3009;3004:3;3000:14;2996:25;2991:4;2987:35;2981:4;2974:49;2403:630;;;;;:::o;174:771::-;238:10;300:6;294:13;328:7;320:15;;412:4;408:1;403:3;399:11;395:22;389:4;382:36;490:4;483;477;473:15;466:29;532:3;525:4;519;515:15;508:28;573:1;587:4;624:3;619;616:12;611:3;605:24;722:4;717:3;713:14;707:4;703:25;695:6;691:38;685:45;677:4;671;667:3;663:13;659:23;653:4;649:34;642:89;760:1;755:3;751:11;744:18;;780:4;775:10;811:3;923:4;916;911:3;907:14;903:25;897:4;890:39;269:670;;;;;:::o;84:64::-;121:6;:20;;;;;;;;;134:1;121:20;;;;;;136:1;121:20;;;;;;138:1;121:20;;;;;;;39:1:-1;33:3;27:10;23:18;57:10;52:3;45:23;79:10;72:17;;0:93;121:20:220;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;84:64::o;25:3019::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o",
+  "source": "pragma solidity ^0.4.0;\n\ncontract NestedArrays {\n\n    uint[][] private nested;\n\n    function getArray() public {\n        nested.push([1,2,3]);\n    }\n\n    // [1, 3, 2, 4]\n    function toBytes(uint[] _array)\n        public\n        returns (bytes _ptr) {\n        assembly {\n            let len := mload(_array)\n            _ptr := msize()\n            \n            // Bytes\n            mstore(_ptr, mul(add(len, 2), 0x20))\n            \n            // Array \n            mstore(add(_ptr, 0x20), 0x20)\n            mstore(add(_ptr, 0x40), len)\n            \n            let idx := 0\n            loop:\n            jumpi(end, eq(len, idx))\n            mstore(add(_ptr, add(mul(idx,0x20),0x60)), mload(add(_array, add(0x20, mul(idx, 0x20)))))\n            idx := add(idx, 1)\n            jump(loop)\n            \n            end:\n            // Without return statements memory is overridden\n            mstore(0x40, add(mul(len, 0x20), 0x20))\n        }\n    }\n    \n    // [\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x20\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x04\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x01\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x03\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x02\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x00\",\"0x04\"]\n    function toArray(bytes _bytes)\n        public\n        returns (uint[] _ptr) {\n        assembly {\n            \n            // First 32 bytes are byte array properties\n            // Next 32 bytes are the data size of the array elements\n            let len := mload(add(_bytes, 0x40))\n            _ptr := msize()\n            \n            // Array\n            mstore(_ptr, len)\n            \n            let idx := 0\n            loop:\n            jumpi(end, eq(len, idx))\n            mstore(add(_ptr, add(mul(idx,0x20),0x20)), mload(add(_bytes, add(0x60, mul(idx, 0x20)))))\n            idx := add(idx, 1)\n            jump(loop)\n            \n            end:\n            mstore(0x40, add(_ptr,add(mul(len, 0x20), 0x40)))\n        }\n    }\n  \n}",
+  "sourcePath": "/home/liweibo/code/solidity/contracts_library/contracts_library/contracts/willitscale/learning-solidity/tutorial-19/NestedArrays.sol",
+  "ast": {
+    "absolutePath": "/home/liweibo/code/solidity/contracts_library/contracts_library/contracts/willitscale/learning-solidity/tutorial-19/NestedArrays.sol",
+    "exportedSymbols": {
+      "NestedArrays": [
+        24704
+      ]
+    },
+    "id": 24705,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 24666,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:220"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 24704,
+        "linearizedBaseContracts": [
+          24704
+        ],
+        "name": "NestedArrays",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 24670,
+            "name": "nested",
+            "nodeType": "VariableDeclaration",
+            "scope": 24704,
+            "src": "54:23:220",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_array$_t_array$_t_uint256_$dyn_storage_$dyn_storage",
+              "typeString": "uint256[][]"
+            },
+            "typeName": {
+              "baseType": {
+                "baseType": {
+                  "id": 24667,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "54:4:220",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "id": 24668,
+                "length": null,
+                "nodeType": "ArrayTypeName",
+                "src": "54:6:220",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+                  "typeString": "uint256[]"
+                }
+              },
+              "id": 24669,
+              "length": null,
+              "nodeType": "ArrayTypeName",
+              "src": "54:8:220",
+              "typeDescriptions": {
+                "typeIdentifier": "t_array$_t_array$_t_uint256_$dyn_storage_$dyn_storage_ptr",
+                "typeString": "uint256[][]"
+              }
+            },
+            "value": null,
+            "visibility": "private"
+          },
+          {
+            "body": {
+              "id": 24682,
+              "nodeType": "Block",
+              "src": "111:37:220",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "components": [
+                          {
+                            "argumentTypes": null,
+                            "hexValue": "31",
+                            "id": 24676,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "kind": "number",
+                            "lValueRequested": false,
+                            "nodeType": "Literal",
+                            "src": "134:1:220",
+                            "subdenomination": null,
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_rational_1_by_1",
+                              "typeString": "int_const 1"
+                            },
+                            "value": "1"
+                          },
+                          {
+                            "argumentTypes": null,
+                            "hexValue": "32",
+                            "id": 24677,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "kind": "number",
+                            "lValueRequested": false,
+                            "nodeType": "Literal",
+                            "src": "136:1:220",
+                            "subdenomination": null,
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_rational_2_by_1",
+                              "typeString": "int_const 2"
+                            },
+                            "value": "2"
+                          },
+                          {
+                            "argumentTypes": null,
+                            "hexValue": "33",
+                            "id": 24678,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "kind": "number",
+                            "lValueRequested": false,
+                            "nodeType": "Literal",
+                            "src": "138:1:220",
+                            "subdenomination": null,
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_rational_3_by_1",
+                              "typeString": "int_const 3"
+                            },
+                            "value": "3"
+                          }
+                        ],
+                        "id": 24679,
+                        "isConstant": false,
+                        "isInlineArray": true,
+                        "isLValue": false,
+                        "isPure": true,
+                        "lValueRequested": false,
+                        "nodeType": "TupleExpression",
+                        "src": "133:7:220",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_uint8_$3_memory_ptr",
+                          "typeString": "uint8[3] memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_array$_t_uint8_$3_memory_ptr",
+                          "typeString": "uint8[3] memory"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 24673,
+                        "name": "nested",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 24670,
+                        "src": "121:6:220",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_array$_t_uint256_$dyn_storage_$dyn_storage",
+                          "typeString": "uint256[] storage ref[] storage ref"
+                        }
+                      },
+                      "id": 24675,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "push",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "121:11:220",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_arraypush_nonpayable$_t_array$_t_uint256_$dyn_storage_$returns$_t_uint256_$",
+                        "typeString": "function (uint256[] storage ref) returns (uint256)"
+                      }
+                    },
+                    "id": 24680,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "121:20:220",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 24681,
+                  "nodeType": "ExpressionStatement",
+                  "src": "121:20:220"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 24683,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "getArray",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 24671,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "101:2:220"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 24672,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "111:0:220"
+            },
+            "scope": 24704,
+            "src": "84:64:220",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 24692,
+              "nodeType": "Block",
+              "src": "250:695:220",
+              "statements": [
+                {
+                  "externalReferences": [
+                    {
+                      "_array": {
+                        "declaration": 24686,
+                        "isOffset": false,
+                        "isSlot": false,
+                        "src": "300:6:220",
+                        "valueSize": 1
+                      }
+                    },
+                    {
+                      "_ptr": {
+                        "declaration": 24689,
+                        "isOffset": false,
+                        "isSlot": false,
+                        "src": "320:4:220",
+                        "valueSize": 1
+                      }
+                    },
+                    {
+                      "_ptr": {
+                        "declaration": 24689,
+                        "isOffset": false,
+                        "isSlot": false,
+                        "src": "477:4:220",
+                        "valueSize": 1
+                      }
+                    },
+                    {
+                      "_ptr": {
+                        "declaration": 24689,
+                        "isOffset": false,
+                        "isSlot": false,
+                        "src": "389:4:220",
+                        "valueSize": 1
+                      }
+                    },
+                    {
+                      "_ptr": {
+                        "declaration": 24689,
+                        "isOffset": false,
+                        "isSlot": false,
+                        "src": "653:4:220",
+                        "valueSize": 1
+                      }
+                    },
+                    {
+                      "_ptr": {
+                        "declaration": 24689,
+                        "isOffset": false,
+                        "isSlot": false,
+                        "src": "519:4:220",
+                        "valueSize": 1
+                      }
+                    },
+                    {
+                      "_array": {
+                        "declaration": 24686,
+                        "isOffset": false,
+                        "isSlot": false,
+                        "src": "695:6:220",
+                        "valueSize": 1
+                      }
+                    }
+                  ],
+                  "id": 24691,
+                  "nodeType": "InlineAssembly",
+                  "operations": "{\n    let len := mload(_array)\n    _ptr := msize()\n    mstore(_ptr, mul(add(len, 2), 0x20))\n    mstore(add(_ptr, 0x20), 0x20)\n    mstore(add(_ptr, 0x40), len)\n    let idx := 0\n    loop:\n    jumpi(end, eq(len, idx))\n    mstore(add(_ptr, add(mul(idx, 0x20), 0x60)), mload(add(_array, add(0x20, mul(idx, 0x20)))))\n    idx := add(idx, 1)\n    jump(loop)\n    end:\n    mstore(0x40, add(mul(len, 0x20), 0x20))\n}",
+                  "src": "260:685:220"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 24693,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "toBytes",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 24687,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 24686,
+                  "name": "_array",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 24693,
+                  "src": "191:13:220",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint256_$dyn_memory_ptr",
+                    "typeString": "uint256[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 24684,
+                      "name": "uint",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "191:4:220",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "id": 24685,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "191:6:220",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+                      "typeString": "uint256[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "190:15:220"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 24690,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 24689,
+                  "name": "_ptr",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 24693,
+                  "src": "238:10:220",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 24688,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "238:5:220",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "237:12:220"
+            },
+            "scope": 24704,
+            "src": "174:771:220",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 24702,
+              "nodeType": "Block",
+              "src": "2384:655:220",
+              "statements": [
+                {
+                  "externalReferences": [
+                    {
+                      "_bytes": {
+                        "declaration": 24695,
+                        "isOffset": false,
+                        "isSlot": false,
+                        "src": "2576:6:220",
+                        "valueSize": 1
+                      }
+                    },
+                    {
+                      "_ptr": {
+                        "declaration": 24699,
+                        "isOffset": false,
+                        "isSlot": false,
+                        "src": "2603:4:220",
+                        "valueSize": 1
+                      }
+                    },
+                    {
+                      "_ptr": {
+                        "declaration": 24699,
+                        "isOffset": false,
+                        "isSlot": false,
+                        "src": "2672:4:220",
+                        "valueSize": 1
+                      }
+                    },
+                    {
+                      "_ptr": {
+                        "declaration": 24699,
+                        "isOffset": false,
+                        "isSlot": false,
+                        "src": "2799:4:220",
+                        "valueSize": 1
+                      }
+                    },
+                    {
+                      "_ptr": {
+                        "declaration": 24699,
+                        "isOffset": false,
+                        "isSlot": false,
+                        "src": "2991:4:220",
+                        "valueSize": 1
+                      }
+                    },
+                    {
+                      "_bytes": {
+                        "declaration": 24695,
+                        "isOffset": false,
+                        "isSlot": false,
+                        "src": "2841:6:220",
+                        "valueSize": 1
+                      }
+                    }
+                  ],
+                  "id": 24701,
+                  "nodeType": "InlineAssembly",
+                  "operations": "{\n    let len := mload(add(_bytes, 0x40))\n    _ptr := msize()\n    mstore(_ptr, len)\n    let idx := 0\n    loop:\n    jumpi(end, eq(len, idx))\n    mstore(add(_ptr, add(mul(idx, 0x20), 0x20)), mload(add(_bytes, add(0x60, mul(idx, 0x20)))))\n    idx := add(idx, 1)\n    jump(loop)\n    end:\n    mstore(0x40, add(_ptr, add(mul(len, 0x20), 0x40)))\n}",
+                  "src": "2394:645:220"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 24703,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "toArray",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 24696,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 24695,
+                  "name": "_bytes",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 24703,
+                  "src": "2325:12:220",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 24694,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2325:5:220",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2324:14:220"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 24700,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 24699,
+                  "name": "_ptr",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 24703,
+                  "src": "2371:11:220",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint256_$dyn_memory_ptr",
+                    "typeString": "uint256[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 24697,
+                      "name": "uint",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "2371:4:220",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "id": 24698,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "2371:6:220",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+                      "typeString": "uint256[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2370:13:220"
+            },
+            "scope": 24704,
+            "src": "2308:731:220",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 24705,
+        "src": "25:3019:220"
+      }
+    ],
+    "src": "0:3044:220"
+  },
+  "legacyAST": {
+    "absolutePath": "/home/liweibo/code/solidity/contracts_library/contracts_library/contracts/willitscale/learning-solidity/tutorial-19/NestedArrays.sol",
+    "exportedSymbols": {
+      "NestedArrays": [
+        24704
+      ]
+    },
+    "id": 24705,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 24666,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:220"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 24704,
+        "linearizedBaseContracts": [
+          24704
+        ],
+        "name": "NestedArrays",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 24670,
+            "name": "nested",
+            "nodeType": "VariableDeclaration",
+            "scope": 24704,
+            "src": "54:23:220",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_array$_t_array$_t_uint256_$dyn_storage_$dyn_storage",
+              "typeString": "uint256[][]"
+            },
+            "typeName": {
+              "baseType": {
+                "baseType": {
+                  "id": 24667,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "54:4:220",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "id": 24668,
+                "length": null,
+                "nodeType": "ArrayTypeName",
+                "src": "54:6:220",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+                  "typeString": "uint256[]"
+                }
+              },
+              "id": 24669,
+              "length": null,
+              "nodeType": "ArrayTypeName",
+              "src": "54:8:220",
+              "typeDescriptions": {
+                "typeIdentifier": "t_array$_t_array$_t_uint256_$dyn_storage_$dyn_storage_ptr",
+                "typeString": "uint256[][]"
+              }
+            },
+            "value": null,
+            "visibility": "private"
+          },
+          {
+            "body": {
+              "id": 24682,
+              "nodeType": "Block",
+              "src": "111:37:220",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "components": [
+                          {
+                            "argumentTypes": null,
+                            "hexValue": "31",
+                            "id": 24676,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "kind": "number",
+                            "lValueRequested": false,
+                            "nodeType": "Literal",
+                            "src": "134:1:220",
+                            "subdenomination": null,
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_rational_1_by_1",
+                              "typeString": "int_const 1"
+                            },
+                            "value": "1"
+                          },
+                          {
+                            "argumentTypes": null,
+                            "hexValue": "32",
+                            "id": 24677,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "kind": "number",
+                            "lValueRequested": false,
+                            "nodeType": "Literal",
+                            "src": "136:1:220",
+                            "subdenomination": null,
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_rational_2_by_1",
+                              "typeString": "int_const 2"
+                            },
+                            "value": "2"
+                          },
+                          {
+                            "argumentTypes": null,
+                            "hexValue": "33",
+                            "id": 24678,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "kind": "number",
+                            "lValueRequested": false,
+                            "nodeType": "Literal",
+                            "src": "138:1:220",
+                            "subdenomination": null,
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_rational_3_by_1",
+                              "typeString": "int_const 3"
+                            },
+                            "value": "3"
+                          }
+                        ],
+                        "id": 24679,
+                        "isConstant": false,
+                        "isInlineArray": true,
+                        "isLValue": false,
+                        "isPure": true,
+                        "lValueRequested": false,
+                        "nodeType": "TupleExpression",
+                        "src": "133:7:220",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_uint8_$3_memory_ptr",
+                          "typeString": "uint8[3] memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_array$_t_uint8_$3_memory_ptr",
+                          "typeString": "uint8[3] memory"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 24673,
+                        "name": "nested",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 24670,
+                        "src": "121:6:220",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_array$_t_uint256_$dyn_storage_$dyn_storage",
+                          "typeString": "uint256[] storage ref[] storage ref"
+                        }
+                      },
+                      "id": 24675,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "push",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "121:11:220",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_arraypush_nonpayable$_t_array$_t_uint256_$dyn_storage_$returns$_t_uint256_$",
+                        "typeString": "function (uint256[] storage ref) returns (uint256)"
+                      }
+                    },
+                    "id": 24680,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "121:20:220",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 24681,
+                  "nodeType": "ExpressionStatement",
+                  "src": "121:20:220"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 24683,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "getArray",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 24671,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "101:2:220"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 24672,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "111:0:220"
+            },
+            "scope": 24704,
+            "src": "84:64:220",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 24692,
+              "nodeType": "Block",
+              "src": "250:695:220",
+              "statements": [
+                {
+                  "externalReferences": [
+                    {
+                      "_array": {
+                        "declaration": 24686,
+                        "isOffset": false,
+                        "isSlot": false,
+                        "src": "300:6:220",
+                        "valueSize": 1
+                      }
+                    },
+                    {
+                      "_ptr": {
+                        "declaration": 24689,
+                        "isOffset": false,
+                        "isSlot": false,
+                        "src": "320:4:220",
+                        "valueSize": 1
+                      }
+                    },
+                    {
+                      "_ptr": {
+                        "declaration": 24689,
+                        "isOffset": false,
+                        "isSlot": false,
+                        "src": "477:4:220",
+                        "valueSize": 1
+                      }
+                    },
+                    {
+                      "_ptr": {
+                        "declaration": 24689,
+                        "isOffset": false,
+                        "isSlot": false,
+                        "src": "389:4:220",
+                        "valueSize": 1
+                      }
+                    },
+                    {
+                      "_ptr": {
+                        "declaration": 24689,
+                        "isOffset": false,
+                        "isSlot": false,
+                        "src": "653:4:220",
+                        "valueSize": 1
+                      }
+                    },
+                    {
+                      "_ptr": {
+                        "declaration": 24689,
+                        "isOffset": false,
+                        "isSlot": false,
+                        "src": "519:4:220",
+                        "valueSize": 1
+                      }
+                    },
+                    {
+                      "_array": {
+                        "declaration": 24686,
+                        "isOffset": false,
+                        "isSlot": false,
+                        "src": "695:6:220",
+                        "valueSize": 1
+                      }
+                    }
+                  ],
+                  "id": 24691,
+                  "nodeType": "InlineAssembly",
+                  "operations": "{\n    let len := mload(_array)\n    _ptr := msize()\n    mstore(_ptr, mul(add(len, 2), 0x20))\n    mstore(add(_ptr, 0x20), 0x20)\n    mstore(add(_ptr, 0x40), len)\n    let idx := 0\n    loop:\n    jumpi(end, eq(len, idx))\n    mstore(add(_ptr, add(mul(idx, 0x20), 0x60)), mload(add(_array, add(0x20, mul(idx, 0x20)))))\n    idx := add(idx, 1)\n    jump(loop)\n    end:\n    mstore(0x40, add(mul(len, 0x20), 0x20))\n}",
+                  "src": "260:685:220"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 24693,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "toBytes",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 24687,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 24686,
+                  "name": "_array",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 24693,
+                  "src": "191:13:220",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint256_$dyn_memory_ptr",
+                    "typeString": "uint256[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 24684,
+                      "name": "uint",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "191:4:220",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "id": 24685,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "191:6:220",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+                      "typeString": "uint256[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "190:15:220"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 24690,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 24689,
+                  "name": "_ptr",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 24693,
+                  "src": "238:10:220",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 24688,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "238:5:220",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "237:12:220"
+            },
+            "scope": 24704,
+            "src": "174:771:220",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 24702,
+              "nodeType": "Block",
+              "src": "2384:655:220",
+              "statements": [
+                {
+                  "externalReferences": [
+                    {
+                      "_bytes": {
+                        "declaration": 24695,
+                        "isOffset": false,
+                        "isSlot": false,
+                        "src": "2576:6:220",
+                        "valueSize": 1
+                      }
+                    },
+                    {
+                      "_ptr": {
+                        "declaration": 24699,
+                        "isOffset": false,
+                        "isSlot": false,
+                        "src": "2603:4:220",
+                        "valueSize": 1
+                      }
+                    },
+                    {
+                      "_ptr": {
+                        "declaration": 24699,
+                        "isOffset": false,
+                        "isSlot": false,
+                        "src": "2672:4:220",
+                        "valueSize": 1
+                      }
+                    },
+                    {
+                      "_ptr": {
+                        "declaration": 24699,
+                        "isOffset": false,
+                        "isSlot": false,
+                        "src": "2799:4:220",
+                        "valueSize": 1
+                      }
+                    },
+                    {
+                      "_ptr": {
+                        "declaration": 24699,
+                        "isOffset": false,
+                        "isSlot": false,
+                        "src": "2991:4:220",
+                        "valueSize": 1
+                      }
+                    },
+                    {
+                      "_bytes": {
+                        "declaration": 24695,
+                        "isOffset": false,
+                        "isSlot": false,
+                        "src": "2841:6:220",
+                        "valueSize": 1
+                      }
+                    }
+                  ],
+                  "id": 24701,
+                  "nodeType": "InlineAssembly",
+                  "operations": "{\n    let len := mload(add(_bytes, 0x40))\n    _ptr := msize()\n    mstore(_ptr, len)\n    let idx := 0\n    loop:\n    jumpi(end, eq(len, idx))\n    mstore(add(_ptr, add(mul(idx, 0x20), 0x20)), mload(add(_bytes, add(0x60, mul(idx, 0x20)))))\n    idx := add(idx, 1)\n    jump(loop)\n    end:\n    mstore(0x40, add(_ptr, add(mul(len, 0x20), 0x40)))\n}",
+                  "src": "2394:645:220"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 24703,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "toArray",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 24696,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 24695,
+                  "name": "_bytes",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 24703,
+                  "src": "2325:12:220",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 24694,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2325:5:220",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2324:14:220"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 24700,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 24699,
+                  "name": "_ptr",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 24703,
+                  "src": "2371:11:220",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint256_$dyn_memory_ptr",
+                    "typeString": "uint256[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 24697,
+                      "name": "uint",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "2371:4:220",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "id": 24698,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "2371:6:220",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+                      "typeString": "uint256[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2370:13:220"
+            },
+            "scope": 24704,
+            "src": "2308:731:220",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 24705,
+        "src": "25:3019:220"
+      }
+    ],
+    "src": "0:3044:220"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.24+commit.e67f0147.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "2.0.1",
+  "updatedAt": "2018-08-14T07:39:20.665Z"
+}

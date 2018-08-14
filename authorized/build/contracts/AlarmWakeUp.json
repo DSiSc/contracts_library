@@ -1,0 +1,3072 @@
+{
+  "contractName": "AlarmWakeUp",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_data",
+          "type": "bytes"
+        }
+      ],
+      "name": "callback",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "pragma solidity ^0.4.0;\n\ninterface AlarmWakeUp {\n    function callback(bytes _data) public;\n}\n\ncontract AlarmService {\n    \n    struct TimeEvent {\n        address addr;\n        bytes data;\n    }\n    \n    mapping(uint => TimeEvent[]) private _events;\n    \n    function set(uint _time) \n        public \n        returns (bool) {\n        TimeEvent _timeEvent;\n        _timeEvent.addr = msg.sender;\n        _timeEvent.data = msg.data;\n        _events[_time].push(_timeEvent);\n    }\n    \n    function call(uint _time) \n        public {\n        TimeEvent[] timeEvents = _events[_time];\n        for(uint i = 0; i < timeEvents.length; i++) {\n            AlarmWakeUp(timeEvents[i].addr).callback(timeEvents[i].data);\n        }\n    }\n}\n\ncontract AlarmTrigger is AlarmWakeUp {\n    \n    AlarmService private _alarmService;\n    \n    function AlarmTrigger() {\n        _alarmService = new AlarmService();\n    }\n    \n    function callback(bytes _data) \n        public {\n        // Do something\n    }\n    \n    function setAlarm() \n        public {\n        _alarmService.set(block.timestamp+60);\n    }\n    \n}",
+  "sourcePath": "/home/liweibo/code/solidity/contracts_library/contracts_library/contracts/willitscale/learning-solidity/tutorial-16/AlarmTrigger.sol",
+  "ast": {
+    "absolutePath": "/home/liweibo/code/solidity/contracts_library/contracts_library/contracts/willitscale/learning-solidity/tutorial-16/AlarmTrigger.sol",
+    "exportedSymbols": {
+      "AlarmService": [
+        24021
+      ],
+      "AlarmTrigger": [
+        24055
+      ],
+      "AlarmWakeUp": [
+        23938
+      ]
+    },
+    "id": 24056,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 23932,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:215"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 23938,
+        "linearizedBaseContracts": [
+          23938
+        ],
+        "name": "AlarmWakeUp",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 23937,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "callback",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 23935,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 23934,
+                  "name": "_data",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 23937,
+                  "src": "71:11:215",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 23933,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "71:5:215",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "70:13:215"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 23936,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "90:0:215"
+            },
+            "scope": 23938,
+            "src": "53:38:215",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 24056,
+        "src": "25:68:215"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 24021,
+        "linearizedBaseContracts": [
+          24021
+        ],
+        "name": "AlarmService",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "AlarmService.TimeEvent",
+            "id": 23943,
+            "members": [
+              {
+                "constant": false,
+                "id": 23940,
+                "name": "addr",
+                "nodeType": "VariableDeclaration",
+                "scope": 23943,
+                "src": "155:12:215",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 23939,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "155:7:215",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 23942,
+                "name": "data",
+                "nodeType": "VariableDeclaration",
+                "scope": 23943,
+                "src": "177:10:215",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes_storage_ptr",
+                  "typeString": "bytes"
+                },
+                "typeName": {
+                  "id": 23941,
+                  "name": "bytes",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "177:5:215",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_storage_ptr",
+                    "typeString": "bytes"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "TimeEvent",
+            "nodeType": "StructDefinition",
+            "scope": 24021,
+            "src": "128:66:215",
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 23948,
+            "name": "_events",
+            "nodeType": "VariableDeclaration",
+            "scope": 24021,
+            "src": "204:44:215",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_struct$_TimeEvent_$23943_storage_$dyn_storage_$",
+              "typeString": "mapping(uint256 => struct AlarmService.TimeEvent[])"
+            },
+            "typeName": {
+              "id": 23947,
+              "keyType": {
+                "id": 23944,
+                "name": "uint",
+                "nodeType": "ElementaryTypeName",
+                "src": "212:4:215",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "204:28:215",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_struct$_TimeEvent_$23943_storage_$dyn_storage_$",
+                "typeString": "mapping(uint256 => struct AlarmService.TimeEvent[])"
+              },
+              "valueType": {
+                "baseType": {
+                  "contractScope": null,
+                  "id": 23945,
+                  "name": "TimeEvent",
+                  "nodeType": "UserDefinedTypeName",
+                  "referencedDeclaration": 23943,
+                  "src": "220:9:215",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_TimeEvent_$23943_storage_ptr",
+                    "typeString": "struct AlarmService.TimeEvent"
+                  }
+                },
+                "id": 23946,
+                "length": null,
+                "nodeType": "ArrayTypeName",
+                "src": "220:11:215",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_struct$_TimeEvent_$23943_storage_$dyn_storage_ptr",
+                  "typeString": "struct AlarmService.TimeEvent[]"
+                }
+              }
+            },
+            "value": null,
+            "visibility": "private"
+          },
+          {
+            "body": {
+              "id": 23979,
+              "nodeType": "Block",
+              "src": "324:152:215",
+              "statements": [
+                {
+                  "assignments": [],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 23956,
+                      "name": "_timeEvent",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 23980,
+                      "src": "334:20:215",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_TimeEvent_$23943_storage_ptr",
+                        "typeString": "struct AlarmService.TimeEvent"
+                      },
+                      "typeName": {
+                        "contractScope": null,
+                        "id": 23955,
+                        "name": "TimeEvent",
+                        "nodeType": "UserDefinedTypeName",
+                        "referencedDeclaration": 23943,
+                        "src": "334:9:215",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_TimeEvent_$23943_storage_ptr",
+                          "typeString": "struct AlarmService.TimeEvent"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 23957,
+                  "initialValue": null,
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "334:20:215"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 23963,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 23958,
+                        "name": "_timeEvent",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 23956,
+                        "src": "364:10:215",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_TimeEvent_$23943_storage_ptr",
+                          "typeString": "struct AlarmService.TimeEvent storage pointer"
+                        }
+                      },
+                      "id": 23960,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "memberName": "addr",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 23940,
+                      "src": "364:15:215",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 23961,
+                        "name": "msg",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 27338,
+                        "src": "382:3:215",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_magic_message",
+                          "typeString": "msg"
+                        }
+                      },
+                      "id": 23962,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "sender",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "382:10:215",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "src": "364:28:215",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "id": 23964,
+                  "nodeType": "ExpressionStatement",
+                  "src": "364:28:215"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 23970,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 23965,
+                        "name": "_timeEvent",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 23956,
+                        "src": "402:10:215",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_TimeEvent_$23943_storage_ptr",
+                          "typeString": "struct AlarmService.TimeEvent storage pointer"
+                        }
+                      },
+                      "id": 23967,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "memberName": "data",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 23942,
+                      "src": "402:15:215",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes_storage",
+                        "typeString": "bytes storage ref"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 23968,
+                        "name": "msg",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 27338,
+                        "src": "420:3:215",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_magic_message",
+                          "typeString": "msg"
+                        }
+                      },
+                      "id": 23969,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "data",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "420:8:215",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes_calldata_ptr",
+                        "typeString": "bytes calldata"
+                      }
+                    },
+                    "src": "402:26:215",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage",
+                      "typeString": "bytes storage ref"
+                    }
+                  },
+                  "id": 23971,
+                  "nodeType": "ExpressionStatement",
+                  "src": "402:26:215"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 23976,
+                        "name": "_timeEvent",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 23956,
+                        "src": "458:10:215",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_TimeEvent_$23943_storage_ptr",
+                          "typeString": "struct AlarmService.TimeEvent storage pointer"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_struct$_TimeEvent_$23943_storage_ptr",
+                          "typeString": "struct AlarmService.TimeEvent storage pointer"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "baseExpression": {
+                          "argumentTypes": null,
+                          "id": 23972,
+                          "name": "_events",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 23948,
+                          "src": "438:7:215",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_struct$_TimeEvent_$23943_storage_$dyn_storage_$",
+                            "typeString": "mapping(uint256 => struct AlarmService.TimeEvent storage ref[] storage ref)"
+                          }
+                        },
+                        "id": 23974,
+                        "indexExpression": {
+                          "argumentTypes": null,
+                          "id": 23973,
+                          "name": "_time",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 23950,
+                          "src": "446:5:215",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "438:14:215",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_struct$_TimeEvent_$23943_storage_$dyn_storage",
+                          "typeString": "struct AlarmService.TimeEvent storage ref[] storage ref"
+                        }
+                      },
+                      "id": 23975,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "push",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "438:19:215",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_arraypush_nonpayable$_t_struct$_TimeEvent_$23943_storage_$returns$_t_uint256_$",
+                        "typeString": "function (struct AlarmService.TimeEvent storage ref) returns (uint256)"
+                      }
+                    },
+                    "id": 23977,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "438:31:215",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 23978,
+                  "nodeType": "ExpressionStatement",
+                  "src": "438:31:215"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 23980,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "set",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 23951,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 23950,
+                  "name": "_time",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 23980,
+                  "src": "272:10:215",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 23949,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "272:4:215",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "271:12:215"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 23954,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 23953,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 23980,
+                  "src": "318:4:215",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 23952,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "318:4:215",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "317:6:215"
+            },
+            "scope": 24021,
+            "src": "259:217:215",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 24019,
+              "nodeType": "Block",
+              "src": "528:194:215",
+              "statements": [
+                {
+                  "assignments": [
+                    23988
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 23988,
+                      "name": "timeEvents",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 24020,
+                      "src": "538:22:215",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_array$_t_struct$_TimeEvent_$23943_storage_$dyn_storage_ptr",
+                        "typeString": "struct AlarmService.TimeEvent[]"
+                      },
+                      "typeName": {
+                        "baseType": {
+                          "contractScope": null,
+                          "id": 23986,
+                          "name": "TimeEvent",
+                          "nodeType": "UserDefinedTypeName",
+                          "referencedDeclaration": 23943,
+                          "src": "538:9:215",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_TimeEvent_$23943_storage_ptr",
+                            "typeString": "struct AlarmService.TimeEvent"
+                          }
+                        },
+                        "id": 23987,
+                        "length": null,
+                        "nodeType": "ArrayTypeName",
+                        "src": "538:11:215",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_struct$_TimeEvent_$23943_storage_$dyn_storage_ptr",
+                          "typeString": "struct AlarmService.TimeEvent[]"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 23992,
+                  "initialValue": {
+                    "argumentTypes": null,
+                    "baseExpression": {
+                      "argumentTypes": null,
+                      "id": 23989,
+                      "name": "_events",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 23948,
+                      "src": "563:7:215",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_struct$_TimeEvent_$23943_storage_$dyn_storage_$",
+                        "typeString": "mapping(uint256 => struct AlarmService.TimeEvent storage ref[] storage ref)"
+                      }
+                    },
+                    "id": 23991,
+                    "indexExpression": {
+                      "argumentTypes": null,
+                      "id": 23990,
+                      "name": "_time",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 23982,
+                      "src": "571:5:215",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "IndexAccess",
+                    "src": "563:14:215",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_struct$_TimeEvent_$23943_storage_$dyn_storage",
+                      "typeString": "struct AlarmService.TimeEvent storage ref[] storage ref"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "538:39:215"
+                },
+                {
+                  "body": {
+                    "id": 24017,
+                    "nodeType": "Block",
+                    "src": "631:85:215",
+                    "statements": [
+                      {
+                        "expression": {
+                          "argumentTypes": null,
+                          "arguments": [
+                            {
+                              "argumentTypes": null,
+                              "expression": {
+                                "argumentTypes": null,
+                                "baseExpression": {
+                                  "argumentTypes": null,
+                                  "id": 24011,
+                                  "name": "timeEvents",
+                                  "nodeType": "Identifier",
+                                  "overloadedDeclarations": [],
+                                  "referencedDeclaration": 23988,
+                                  "src": "686:10:215",
+                                  "typeDescriptions": {
+                                    "typeIdentifier": "t_array$_t_struct$_TimeEvent_$23943_storage_$dyn_storage_ptr",
+                                    "typeString": "struct AlarmService.TimeEvent storage ref[] storage pointer"
+                                  }
+                                },
+                                "id": 24013,
+                                "indexExpression": {
+                                  "argumentTypes": null,
+                                  "id": 24012,
+                                  "name": "i",
+                                  "nodeType": "Identifier",
+                                  "overloadedDeclarations": [],
+                                  "referencedDeclaration": 23994,
+                                  "src": "697:1:215",
+                                  "typeDescriptions": {
+                                    "typeIdentifier": "t_uint256",
+                                    "typeString": "uint256"
+                                  }
+                                },
+                                "isConstant": false,
+                                "isLValue": true,
+                                "isPure": false,
+                                "lValueRequested": false,
+                                "nodeType": "IndexAccess",
+                                "src": "686:13:215",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_struct$_TimeEvent_$23943_storage",
+                                  "typeString": "struct AlarmService.TimeEvent storage ref"
+                                }
+                              },
+                              "id": 24014,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "memberName": "data",
+                              "nodeType": "MemberAccess",
+                              "referencedDeclaration": 23942,
+                              "src": "686:18:215",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_bytes_storage",
+                                "typeString": "bytes storage ref"
+                              }
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_bytes_storage",
+                                "typeString": "bytes storage ref"
+                              }
+                            ],
+                            "expression": {
+                              "argumentTypes": null,
+                              "arguments": [
+                                {
+                                  "argumentTypes": null,
+                                  "expression": {
+                                    "argumentTypes": null,
+                                    "baseExpression": {
+                                      "argumentTypes": null,
+                                      "id": 24005,
+                                      "name": "timeEvents",
+                                      "nodeType": "Identifier",
+                                      "overloadedDeclarations": [],
+                                      "referencedDeclaration": 23988,
+                                      "src": "657:10:215",
+                                      "typeDescriptions": {
+                                        "typeIdentifier": "t_array$_t_struct$_TimeEvent_$23943_storage_$dyn_storage_ptr",
+                                        "typeString": "struct AlarmService.TimeEvent storage ref[] storage pointer"
+                                      }
+                                    },
+                                    "id": 24007,
+                                    "indexExpression": {
+                                      "argumentTypes": null,
+                                      "id": 24006,
+                                      "name": "i",
+                                      "nodeType": "Identifier",
+                                      "overloadedDeclarations": [],
+                                      "referencedDeclaration": 23994,
+                                      "src": "668:1:215",
+                                      "typeDescriptions": {
+                                        "typeIdentifier": "t_uint256",
+                                        "typeString": "uint256"
+                                      }
+                                    },
+                                    "isConstant": false,
+                                    "isLValue": true,
+                                    "isPure": false,
+                                    "lValueRequested": false,
+                                    "nodeType": "IndexAccess",
+                                    "src": "657:13:215",
+                                    "typeDescriptions": {
+                                      "typeIdentifier": "t_struct$_TimeEvent_$23943_storage",
+                                      "typeString": "struct AlarmService.TimeEvent storage ref"
+                                    }
+                                  },
+                                  "id": 24008,
+                                  "isConstant": false,
+                                  "isLValue": true,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "memberName": "addr",
+                                  "nodeType": "MemberAccess",
+                                  "referencedDeclaration": 23940,
+                                  "src": "657:18:215",
+                                  "typeDescriptions": {
+                                    "typeIdentifier": "t_address",
+                                    "typeString": "address"
+                                  }
+                                }
+                              ],
+                              "expression": {
+                                "argumentTypes": [
+                                  {
+                                    "typeIdentifier": "t_address",
+                                    "typeString": "address"
+                                  }
+                                ],
+                                "id": 24004,
+                                "name": "AlarmWakeUp",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 23938,
+                                "src": "645:11:215",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_type$_t_contract$_AlarmWakeUp_$23938_$",
+                                  "typeString": "type(contract AlarmWakeUp)"
+                                }
+                              },
+                              "id": 24009,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "kind": "typeConversion",
+                              "lValueRequested": false,
+                              "names": [],
+                              "nodeType": "FunctionCall",
+                              "src": "645:31:215",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_contract$_AlarmWakeUp_$23938",
+                                "typeString": "contract AlarmWakeUp"
+                              }
+                            },
+                            "id": 24010,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberName": "callback",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 23937,
+                            "src": "645:40:215",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_function_external_nonpayable$_t_bytes_memory_ptr_$returns$__$",
+                              "typeString": "function (bytes memory) external"
+                            }
+                          },
+                          "id": 24015,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "kind": "functionCall",
+                          "lValueRequested": false,
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "645:60:215",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_tuple$__$",
+                            "typeString": "tuple()"
+                          }
+                        },
+                        "id": 24016,
+                        "nodeType": "ExpressionStatement",
+                        "src": "645:60:215"
+                      }
+                    ]
+                  },
+                  "condition": {
+                    "argumentTypes": null,
+                    "commonType": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    },
+                    "id": 24000,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "argumentTypes": null,
+                      "id": 23997,
+                      "name": "i",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 23994,
+                      "src": "603:1:215",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "<",
+                    "rightExpression": {
+                      "argumentTypes": null,
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 23998,
+                        "name": "timeEvents",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 23988,
+                        "src": "607:10:215",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_struct$_TimeEvent_$23943_storage_$dyn_storage_ptr",
+                          "typeString": "struct AlarmService.TimeEvent storage ref[] storage pointer"
+                        }
+                      },
+                      "id": 23999,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "length",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "607:17:215",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "603:21:215",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 24018,
+                  "initializationExpression": {
+                    "assignments": [
+                      23994
+                    ],
+                    "declarations": [
+                      {
+                        "constant": false,
+                        "id": 23994,
+                        "name": "i",
+                        "nodeType": "VariableDeclaration",
+                        "scope": 24020,
+                        "src": "591:6:215",
+                        "stateVariable": false,
+                        "storageLocation": "default",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        "typeName": {
+                          "id": 23993,
+                          "name": "uint",
+                          "nodeType": "ElementaryTypeName",
+                          "src": "591:4:215",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "value": null,
+                        "visibility": "internal"
+                      }
+                    ],
+                    "id": 23996,
+                    "initialValue": {
+                      "argumentTypes": null,
+                      "hexValue": "30",
+                      "id": 23995,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "number",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "600:1:215",
+                      "subdenomination": null,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_rational_0_by_1",
+                        "typeString": "int_const 0"
+                      },
+                      "value": "0"
+                    },
+                    "nodeType": "VariableDeclarationStatement",
+                    "src": "591:10:215"
+                  },
+                  "loopExpression": {
+                    "expression": {
+                      "argumentTypes": null,
+                      "id": 24002,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "nodeType": "UnaryOperation",
+                      "operator": "++",
+                      "prefix": false,
+                      "src": "626:3:215",
+                      "subExpression": {
+                        "argumentTypes": null,
+                        "id": 24001,
+                        "name": "i",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 23994,
+                        "src": "626:1:215",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "id": 24003,
+                    "nodeType": "ExpressionStatement",
+                    "src": "626:3:215"
+                  },
+                  "nodeType": "ForStatement",
+                  "src": "587:129:215"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 24020,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "call",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 23983,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 23982,
+                  "name": "_time",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 24020,
+                  "src": "500:10:215",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 23981,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "500:4:215",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "499:12:215"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 23984,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "528:0:215"
+            },
+            "scope": 24021,
+            "src": "486:236:215",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 24056,
+        "src": "95:629:215"
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 24022,
+              "name": "AlarmWakeUp",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 23938,
+              "src": "751:11:215",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_AlarmWakeUp_$23938",
+                "typeString": "contract AlarmWakeUp"
+              }
+            },
+            "id": 24023,
+            "nodeType": "InheritanceSpecifier",
+            "src": "751:11:215"
+          }
+        ],
+        "contractDependencies": [
+          23938,
+          24021
+        ],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 24055,
+        "linearizedBaseContracts": [
+          24055,
+          23938
+        ],
+        "name": "AlarmTrigger",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 24025,
+            "name": "_alarmService",
+            "nodeType": "VariableDeclaration",
+            "scope": 24055,
+            "src": "774:34:215",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_contract$_AlarmService_$24021",
+              "typeString": "contract AlarmService"
+            },
+            "typeName": {
+              "contractScope": null,
+              "id": 24024,
+              "name": "AlarmService",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 24021,
+              "src": "774:12:215",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_AlarmService_$24021",
+                "typeString": "contract AlarmService"
+              }
+            },
+            "value": null,
+            "visibility": "private"
+          },
+          {
+            "body": {
+              "id": 24034,
+              "nodeType": "Block",
+              "src": "843:51:215",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 24032,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 24028,
+                      "name": "_alarmService",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 24025,
+                      "src": "853:13:215",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_AlarmService_$24021",
+                        "typeString": "contract AlarmService"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "arguments": [],
+                      "expression": {
+                        "argumentTypes": [],
+                        "id": 24030,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "NewExpression",
+                        "src": "869:16:215",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_function_creation_nonpayable$__$returns$_t_contract$_AlarmService_$24021_$",
+                          "typeString": "function () returns (contract AlarmService)"
+                        },
+                        "typeName": {
+                          "contractScope": null,
+                          "id": 24029,
+                          "name": "AlarmService",
+                          "nodeType": "UserDefinedTypeName",
+                          "referencedDeclaration": 24021,
+                          "src": "873:12:215",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_contract$_AlarmService_$24021",
+                            "typeString": "contract AlarmService"
+                          }
+                        }
+                      },
+                      "id": 24031,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "functionCall",
+                      "lValueRequested": false,
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "869:18:215",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_AlarmService_$24021",
+                        "typeString": "contract AlarmService"
+                      }
+                    },
+                    "src": "853:34:215",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_AlarmService_$24021",
+                      "typeString": "contract AlarmService"
+                    }
+                  },
+                  "id": 24033,
+                  "nodeType": "ExpressionStatement",
+                  "src": "853:34:215"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 24035,
+            "implemented": true,
+            "isConstructor": true,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "AlarmTrigger",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 24026,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "840:2:215"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 24027,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "843:0:215"
+            },
+            "scope": 24055,
+            "src": "819:75:215",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 24040,
+              "nodeType": "Block",
+              "src": "951:31:215",
+              "statements": []
+            },
+            "documentation": null,
+            "id": 24041,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "callback",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 24038,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 24037,
+                  "name": "_data",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 24041,
+                  "src": "922:11:215",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 24036,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "922:5:215",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "921:13:215"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 24039,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "951:0:215"
+            },
+            "scope": 24055,
+            "src": "904:78:215",
+            "stateMutability": "nonpayable",
+            "superFunction": 23937,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 24053,
+              "nodeType": "Block",
+              "src": "1028:54:215",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "commonType": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        "id": 24050,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "argumentTypes": null,
+                          "expression": {
+                            "argumentTypes": null,
+                            "id": 24047,
+                            "name": "block",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 27328,
+                            "src": "1056:5:215",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_magic_block",
+                              "typeString": "block"
+                            }
+                          },
+                          "id": 24048,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "timestamp",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": null,
+                          "src": "1056:15:215",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "+",
+                        "rightExpression": {
+                          "argumentTypes": null,
+                          "hexValue": "3630",
+                          "id": 24049,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "number",
+                          "lValueRequested": false,
+                          "nodeType": "Literal",
+                          "src": "1072:2:215",
+                          "subdenomination": null,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_rational_60_by_1",
+                            "typeString": "int_const 60"
+                          },
+                          "value": "60"
+                        },
+                        "src": "1056:18:215",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 24044,
+                        "name": "_alarmService",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 24025,
+                        "src": "1038:13:215",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_contract$_AlarmService_$24021",
+                          "typeString": "contract AlarmService"
+                        }
+                      },
+                      "id": 24046,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "set",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 23980,
+                      "src": "1038:17:215",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_external_nonpayable$_t_uint256_$returns$_t_bool_$",
+                        "typeString": "function (uint256) external returns (bool)"
+                      }
+                    },
+                    "id": 24051,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1038:37:215",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 24052,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1038:37:215"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 24054,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "setAlarm",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 24042,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1009:2:215"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 24043,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1028:0:215"
+            },
+            "scope": 24055,
+            "src": "992:90:215",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 24056,
+        "src": "726:363:215"
+      }
+    ],
+    "src": "0:1089:215"
+  },
+  "legacyAST": {
+    "absolutePath": "/home/liweibo/code/solidity/contracts_library/contracts_library/contracts/willitscale/learning-solidity/tutorial-16/AlarmTrigger.sol",
+    "exportedSymbols": {
+      "AlarmService": [
+        24021
+      ],
+      "AlarmTrigger": [
+        24055
+      ],
+      "AlarmWakeUp": [
+        23938
+      ]
+    },
+    "id": 24056,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 23932,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:215"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 23938,
+        "linearizedBaseContracts": [
+          23938
+        ],
+        "name": "AlarmWakeUp",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 23937,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "callback",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 23935,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 23934,
+                  "name": "_data",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 23937,
+                  "src": "71:11:215",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 23933,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "71:5:215",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "70:13:215"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 23936,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "90:0:215"
+            },
+            "scope": 23938,
+            "src": "53:38:215",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 24056,
+        "src": "25:68:215"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 24021,
+        "linearizedBaseContracts": [
+          24021
+        ],
+        "name": "AlarmService",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "AlarmService.TimeEvent",
+            "id": 23943,
+            "members": [
+              {
+                "constant": false,
+                "id": 23940,
+                "name": "addr",
+                "nodeType": "VariableDeclaration",
+                "scope": 23943,
+                "src": "155:12:215",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 23939,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "155:7:215",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 23942,
+                "name": "data",
+                "nodeType": "VariableDeclaration",
+                "scope": 23943,
+                "src": "177:10:215",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes_storage_ptr",
+                  "typeString": "bytes"
+                },
+                "typeName": {
+                  "id": 23941,
+                  "name": "bytes",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "177:5:215",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_storage_ptr",
+                    "typeString": "bytes"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "TimeEvent",
+            "nodeType": "StructDefinition",
+            "scope": 24021,
+            "src": "128:66:215",
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 23948,
+            "name": "_events",
+            "nodeType": "VariableDeclaration",
+            "scope": 24021,
+            "src": "204:44:215",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_struct$_TimeEvent_$23943_storage_$dyn_storage_$",
+              "typeString": "mapping(uint256 => struct AlarmService.TimeEvent[])"
+            },
+            "typeName": {
+              "id": 23947,
+              "keyType": {
+                "id": 23944,
+                "name": "uint",
+                "nodeType": "ElementaryTypeName",
+                "src": "212:4:215",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "204:28:215",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_struct$_TimeEvent_$23943_storage_$dyn_storage_$",
+                "typeString": "mapping(uint256 => struct AlarmService.TimeEvent[])"
+              },
+              "valueType": {
+                "baseType": {
+                  "contractScope": null,
+                  "id": 23945,
+                  "name": "TimeEvent",
+                  "nodeType": "UserDefinedTypeName",
+                  "referencedDeclaration": 23943,
+                  "src": "220:9:215",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_TimeEvent_$23943_storage_ptr",
+                    "typeString": "struct AlarmService.TimeEvent"
+                  }
+                },
+                "id": 23946,
+                "length": null,
+                "nodeType": "ArrayTypeName",
+                "src": "220:11:215",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_struct$_TimeEvent_$23943_storage_$dyn_storage_ptr",
+                  "typeString": "struct AlarmService.TimeEvent[]"
+                }
+              }
+            },
+            "value": null,
+            "visibility": "private"
+          },
+          {
+            "body": {
+              "id": 23979,
+              "nodeType": "Block",
+              "src": "324:152:215",
+              "statements": [
+                {
+                  "assignments": [],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 23956,
+                      "name": "_timeEvent",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 23980,
+                      "src": "334:20:215",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_TimeEvent_$23943_storage_ptr",
+                        "typeString": "struct AlarmService.TimeEvent"
+                      },
+                      "typeName": {
+                        "contractScope": null,
+                        "id": 23955,
+                        "name": "TimeEvent",
+                        "nodeType": "UserDefinedTypeName",
+                        "referencedDeclaration": 23943,
+                        "src": "334:9:215",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_TimeEvent_$23943_storage_ptr",
+                          "typeString": "struct AlarmService.TimeEvent"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 23957,
+                  "initialValue": null,
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "334:20:215"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 23963,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 23958,
+                        "name": "_timeEvent",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 23956,
+                        "src": "364:10:215",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_TimeEvent_$23943_storage_ptr",
+                          "typeString": "struct AlarmService.TimeEvent storage pointer"
+                        }
+                      },
+                      "id": 23960,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "memberName": "addr",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 23940,
+                      "src": "364:15:215",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 23961,
+                        "name": "msg",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 27338,
+                        "src": "382:3:215",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_magic_message",
+                          "typeString": "msg"
+                        }
+                      },
+                      "id": 23962,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "sender",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "382:10:215",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "src": "364:28:215",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "id": 23964,
+                  "nodeType": "ExpressionStatement",
+                  "src": "364:28:215"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 23970,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 23965,
+                        "name": "_timeEvent",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 23956,
+                        "src": "402:10:215",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_TimeEvent_$23943_storage_ptr",
+                          "typeString": "struct AlarmService.TimeEvent storage pointer"
+                        }
+                      },
+                      "id": 23967,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "memberName": "data",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 23942,
+                      "src": "402:15:215",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes_storage",
+                        "typeString": "bytes storage ref"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 23968,
+                        "name": "msg",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 27338,
+                        "src": "420:3:215",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_magic_message",
+                          "typeString": "msg"
+                        }
+                      },
+                      "id": 23969,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "data",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "420:8:215",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes_calldata_ptr",
+                        "typeString": "bytes calldata"
+                      }
+                    },
+                    "src": "402:26:215",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage",
+                      "typeString": "bytes storage ref"
+                    }
+                  },
+                  "id": 23971,
+                  "nodeType": "ExpressionStatement",
+                  "src": "402:26:215"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 23976,
+                        "name": "_timeEvent",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 23956,
+                        "src": "458:10:215",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_TimeEvent_$23943_storage_ptr",
+                          "typeString": "struct AlarmService.TimeEvent storage pointer"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_struct$_TimeEvent_$23943_storage_ptr",
+                          "typeString": "struct AlarmService.TimeEvent storage pointer"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "baseExpression": {
+                          "argumentTypes": null,
+                          "id": 23972,
+                          "name": "_events",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 23948,
+                          "src": "438:7:215",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_struct$_TimeEvent_$23943_storage_$dyn_storage_$",
+                            "typeString": "mapping(uint256 => struct AlarmService.TimeEvent storage ref[] storage ref)"
+                          }
+                        },
+                        "id": 23974,
+                        "indexExpression": {
+                          "argumentTypes": null,
+                          "id": 23973,
+                          "name": "_time",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 23950,
+                          "src": "446:5:215",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "438:14:215",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_struct$_TimeEvent_$23943_storage_$dyn_storage",
+                          "typeString": "struct AlarmService.TimeEvent storage ref[] storage ref"
+                        }
+                      },
+                      "id": 23975,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "push",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "438:19:215",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_arraypush_nonpayable$_t_struct$_TimeEvent_$23943_storage_$returns$_t_uint256_$",
+                        "typeString": "function (struct AlarmService.TimeEvent storage ref) returns (uint256)"
+                      }
+                    },
+                    "id": 23977,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "438:31:215",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 23978,
+                  "nodeType": "ExpressionStatement",
+                  "src": "438:31:215"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 23980,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "set",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 23951,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 23950,
+                  "name": "_time",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 23980,
+                  "src": "272:10:215",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 23949,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "272:4:215",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "271:12:215"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 23954,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 23953,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 23980,
+                  "src": "318:4:215",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 23952,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "318:4:215",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "317:6:215"
+            },
+            "scope": 24021,
+            "src": "259:217:215",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 24019,
+              "nodeType": "Block",
+              "src": "528:194:215",
+              "statements": [
+                {
+                  "assignments": [
+                    23988
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 23988,
+                      "name": "timeEvents",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 24020,
+                      "src": "538:22:215",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_array$_t_struct$_TimeEvent_$23943_storage_$dyn_storage_ptr",
+                        "typeString": "struct AlarmService.TimeEvent[]"
+                      },
+                      "typeName": {
+                        "baseType": {
+                          "contractScope": null,
+                          "id": 23986,
+                          "name": "TimeEvent",
+                          "nodeType": "UserDefinedTypeName",
+                          "referencedDeclaration": 23943,
+                          "src": "538:9:215",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_TimeEvent_$23943_storage_ptr",
+                            "typeString": "struct AlarmService.TimeEvent"
+                          }
+                        },
+                        "id": 23987,
+                        "length": null,
+                        "nodeType": "ArrayTypeName",
+                        "src": "538:11:215",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_struct$_TimeEvent_$23943_storage_$dyn_storage_ptr",
+                          "typeString": "struct AlarmService.TimeEvent[]"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 23992,
+                  "initialValue": {
+                    "argumentTypes": null,
+                    "baseExpression": {
+                      "argumentTypes": null,
+                      "id": 23989,
+                      "name": "_events",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 23948,
+                      "src": "563:7:215",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_struct$_TimeEvent_$23943_storage_$dyn_storage_$",
+                        "typeString": "mapping(uint256 => struct AlarmService.TimeEvent storage ref[] storage ref)"
+                      }
+                    },
+                    "id": 23991,
+                    "indexExpression": {
+                      "argumentTypes": null,
+                      "id": 23990,
+                      "name": "_time",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 23982,
+                      "src": "571:5:215",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "IndexAccess",
+                    "src": "563:14:215",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_struct$_TimeEvent_$23943_storage_$dyn_storage",
+                      "typeString": "struct AlarmService.TimeEvent storage ref[] storage ref"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "538:39:215"
+                },
+                {
+                  "body": {
+                    "id": 24017,
+                    "nodeType": "Block",
+                    "src": "631:85:215",
+                    "statements": [
+                      {
+                        "expression": {
+                          "argumentTypes": null,
+                          "arguments": [
+                            {
+                              "argumentTypes": null,
+                              "expression": {
+                                "argumentTypes": null,
+                                "baseExpression": {
+                                  "argumentTypes": null,
+                                  "id": 24011,
+                                  "name": "timeEvents",
+                                  "nodeType": "Identifier",
+                                  "overloadedDeclarations": [],
+                                  "referencedDeclaration": 23988,
+                                  "src": "686:10:215",
+                                  "typeDescriptions": {
+                                    "typeIdentifier": "t_array$_t_struct$_TimeEvent_$23943_storage_$dyn_storage_ptr",
+                                    "typeString": "struct AlarmService.TimeEvent storage ref[] storage pointer"
+                                  }
+                                },
+                                "id": 24013,
+                                "indexExpression": {
+                                  "argumentTypes": null,
+                                  "id": 24012,
+                                  "name": "i",
+                                  "nodeType": "Identifier",
+                                  "overloadedDeclarations": [],
+                                  "referencedDeclaration": 23994,
+                                  "src": "697:1:215",
+                                  "typeDescriptions": {
+                                    "typeIdentifier": "t_uint256",
+                                    "typeString": "uint256"
+                                  }
+                                },
+                                "isConstant": false,
+                                "isLValue": true,
+                                "isPure": false,
+                                "lValueRequested": false,
+                                "nodeType": "IndexAccess",
+                                "src": "686:13:215",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_struct$_TimeEvent_$23943_storage",
+                                  "typeString": "struct AlarmService.TimeEvent storage ref"
+                                }
+                              },
+                              "id": 24014,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "memberName": "data",
+                              "nodeType": "MemberAccess",
+                              "referencedDeclaration": 23942,
+                              "src": "686:18:215",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_bytes_storage",
+                                "typeString": "bytes storage ref"
+                              }
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_bytes_storage",
+                                "typeString": "bytes storage ref"
+                              }
+                            ],
+                            "expression": {
+                              "argumentTypes": null,
+                              "arguments": [
+                                {
+                                  "argumentTypes": null,
+                                  "expression": {
+                                    "argumentTypes": null,
+                                    "baseExpression": {
+                                      "argumentTypes": null,
+                                      "id": 24005,
+                                      "name": "timeEvents",
+                                      "nodeType": "Identifier",
+                                      "overloadedDeclarations": [],
+                                      "referencedDeclaration": 23988,
+                                      "src": "657:10:215",
+                                      "typeDescriptions": {
+                                        "typeIdentifier": "t_array$_t_struct$_TimeEvent_$23943_storage_$dyn_storage_ptr",
+                                        "typeString": "struct AlarmService.TimeEvent storage ref[] storage pointer"
+                                      }
+                                    },
+                                    "id": 24007,
+                                    "indexExpression": {
+                                      "argumentTypes": null,
+                                      "id": 24006,
+                                      "name": "i",
+                                      "nodeType": "Identifier",
+                                      "overloadedDeclarations": [],
+                                      "referencedDeclaration": 23994,
+                                      "src": "668:1:215",
+                                      "typeDescriptions": {
+                                        "typeIdentifier": "t_uint256",
+                                        "typeString": "uint256"
+                                      }
+                                    },
+                                    "isConstant": false,
+                                    "isLValue": true,
+                                    "isPure": false,
+                                    "lValueRequested": false,
+                                    "nodeType": "IndexAccess",
+                                    "src": "657:13:215",
+                                    "typeDescriptions": {
+                                      "typeIdentifier": "t_struct$_TimeEvent_$23943_storage",
+                                      "typeString": "struct AlarmService.TimeEvent storage ref"
+                                    }
+                                  },
+                                  "id": 24008,
+                                  "isConstant": false,
+                                  "isLValue": true,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "memberName": "addr",
+                                  "nodeType": "MemberAccess",
+                                  "referencedDeclaration": 23940,
+                                  "src": "657:18:215",
+                                  "typeDescriptions": {
+                                    "typeIdentifier": "t_address",
+                                    "typeString": "address"
+                                  }
+                                }
+                              ],
+                              "expression": {
+                                "argumentTypes": [
+                                  {
+                                    "typeIdentifier": "t_address",
+                                    "typeString": "address"
+                                  }
+                                ],
+                                "id": 24004,
+                                "name": "AlarmWakeUp",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 23938,
+                                "src": "645:11:215",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_type$_t_contract$_AlarmWakeUp_$23938_$",
+                                  "typeString": "type(contract AlarmWakeUp)"
+                                }
+                              },
+                              "id": 24009,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "kind": "typeConversion",
+                              "lValueRequested": false,
+                              "names": [],
+                              "nodeType": "FunctionCall",
+                              "src": "645:31:215",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_contract$_AlarmWakeUp_$23938",
+                                "typeString": "contract AlarmWakeUp"
+                              }
+                            },
+                            "id": 24010,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberName": "callback",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 23937,
+                            "src": "645:40:215",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_function_external_nonpayable$_t_bytes_memory_ptr_$returns$__$",
+                              "typeString": "function (bytes memory) external"
+                            }
+                          },
+                          "id": 24015,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "kind": "functionCall",
+                          "lValueRequested": false,
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "645:60:215",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_tuple$__$",
+                            "typeString": "tuple()"
+                          }
+                        },
+                        "id": 24016,
+                        "nodeType": "ExpressionStatement",
+                        "src": "645:60:215"
+                      }
+                    ]
+                  },
+                  "condition": {
+                    "argumentTypes": null,
+                    "commonType": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    },
+                    "id": 24000,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "argumentTypes": null,
+                      "id": 23997,
+                      "name": "i",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 23994,
+                      "src": "603:1:215",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "<",
+                    "rightExpression": {
+                      "argumentTypes": null,
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 23998,
+                        "name": "timeEvents",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 23988,
+                        "src": "607:10:215",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_struct$_TimeEvent_$23943_storage_$dyn_storage_ptr",
+                          "typeString": "struct AlarmService.TimeEvent storage ref[] storage pointer"
+                        }
+                      },
+                      "id": 23999,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "length",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "607:17:215",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "603:21:215",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 24018,
+                  "initializationExpression": {
+                    "assignments": [
+                      23994
+                    ],
+                    "declarations": [
+                      {
+                        "constant": false,
+                        "id": 23994,
+                        "name": "i",
+                        "nodeType": "VariableDeclaration",
+                        "scope": 24020,
+                        "src": "591:6:215",
+                        "stateVariable": false,
+                        "storageLocation": "default",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        "typeName": {
+                          "id": 23993,
+                          "name": "uint",
+                          "nodeType": "ElementaryTypeName",
+                          "src": "591:4:215",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "value": null,
+                        "visibility": "internal"
+                      }
+                    ],
+                    "id": 23996,
+                    "initialValue": {
+                      "argumentTypes": null,
+                      "hexValue": "30",
+                      "id": 23995,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "number",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "600:1:215",
+                      "subdenomination": null,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_rational_0_by_1",
+                        "typeString": "int_const 0"
+                      },
+                      "value": "0"
+                    },
+                    "nodeType": "VariableDeclarationStatement",
+                    "src": "591:10:215"
+                  },
+                  "loopExpression": {
+                    "expression": {
+                      "argumentTypes": null,
+                      "id": 24002,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "nodeType": "UnaryOperation",
+                      "operator": "++",
+                      "prefix": false,
+                      "src": "626:3:215",
+                      "subExpression": {
+                        "argumentTypes": null,
+                        "id": 24001,
+                        "name": "i",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 23994,
+                        "src": "626:1:215",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "id": 24003,
+                    "nodeType": "ExpressionStatement",
+                    "src": "626:3:215"
+                  },
+                  "nodeType": "ForStatement",
+                  "src": "587:129:215"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 24020,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "call",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 23983,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 23982,
+                  "name": "_time",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 24020,
+                  "src": "500:10:215",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 23981,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "500:4:215",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "499:12:215"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 23984,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "528:0:215"
+            },
+            "scope": 24021,
+            "src": "486:236:215",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 24056,
+        "src": "95:629:215"
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 24022,
+              "name": "AlarmWakeUp",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 23938,
+              "src": "751:11:215",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_AlarmWakeUp_$23938",
+                "typeString": "contract AlarmWakeUp"
+              }
+            },
+            "id": 24023,
+            "nodeType": "InheritanceSpecifier",
+            "src": "751:11:215"
+          }
+        ],
+        "contractDependencies": [
+          23938,
+          24021
+        ],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 24055,
+        "linearizedBaseContracts": [
+          24055,
+          23938
+        ],
+        "name": "AlarmTrigger",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 24025,
+            "name": "_alarmService",
+            "nodeType": "VariableDeclaration",
+            "scope": 24055,
+            "src": "774:34:215",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_contract$_AlarmService_$24021",
+              "typeString": "contract AlarmService"
+            },
+            "typeName": {
+              "contractScope": null,
+              "id": 24024,
+              "name": "AlarmService",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 24021,
+              "src": "774:12:215",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_AlarmService_$24021",
+                "typeString": "contract AlarmService"
+              }
+            },
+            "value": null,
+            "visibility": "private"
+          },
+          {
+            "body": {
+              "id": 24034,
+              "nodeType": "Block",
+              "src": "843:51:215",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 24032,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 24028,
+                      "name": "_alarmService",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 24025,
+                      "src": "853:13:215",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_AlarmService_$24021",
+                        "typeString": "contract AlarmService"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "arguments": [],
+                      "expression": {
+                        "argumentTypes": [],
+                        "id": 24030,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "NewExpression",
+                        "src": "869:16:215",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_function_creation_nonpayable$__$returns$_t_contract$_AlarmService_$24021_$",
+                          "typeString": "function () returns (contract AlarmService)"
+                        },
+                        "typeName": {
+                          "contractScope": null,
+                          "id": 24029,
+                          "name": "AlarmService",
+                          "nodeType": "UserDefinedTypeName",
+                          "referencedDeclaration": 24021,
+                          "src": "873:12:215",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_contract$_AlarmService_$24021",
+                            "typeString": "contract AlarmService"
+                          }
+                        }
+                      },
+                      "id": 24031,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "functionCall",
+                      "lValueRequested": false,
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "869:18:215",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_AlarmService_$24021",
+                        "typeString": "contract AlarmService"
+                      }
+                    },
+                    "src": "853:34:215",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_AlarmService_$24021",
+                      "typeString": "contract AlarmService"
+                    }
+                  },
+                  "id": 24033,
+                  "nodeType": "ExpressionStatement",
+                  "src": "853:34:215"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 24035,
+            "implemented": true,
+            "isConstructor": true,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "AlarmTrigger",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 24026,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "840:2:215"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 24027,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "843:0:215"
+            },
+            "scope": 24055,
+            "src": "819:75:215",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 24040,
+              "nodeType": "Block",
+              "src": "951:31:215",
+              "statements": []
+            },
+            "documentation": null,
+            "id": 24041,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "callback",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 24038,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 24037,
+                  "name": "_data",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 24041,
+                  "src": "922:11:215",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 24036,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "922:5:215",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "921:13:215"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 24039,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "951:0:215"
+            },
+            "scope": 24055,
+            "src": "904:78:215",
+            "stateMutability": "nonpayable",
+            "superFunction": 23937,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 24053,
+              "nodeType": "Block",
+              "src": "1028:54:215",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "commonType": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        "id": 24050,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "argumentTypes": null,
+                          "expression": {
+                            "argumentTypes": null,
+                            "id": 24047,
+                            "name": "block",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 27328,
+                            "src": "1056:5:215",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_magic_block",
+                              "typeString": "block"
+                            }
+                          },
+                          "id": 24048,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "timestamp",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": null,
+                          "src": "1056:15:215",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "+",
+                        "rightExpression": {
+                          "argumentTypes": null,
+                          "hexValue": "3630",
+                          "id": 24049,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "number",
+                          "lValueRequested": false,
+                          "nodeType": "Literal",
+                          "src": "1072:2:215",
+                          "subdenomination": null,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_rational_60_by_1",
+                            "typeString": "int_const 60"
+                          },
+                          "value": "60"
+                        },
+                        "src": "1056:18:215",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 24044,
+                        "name": "_alarmService",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 24025,
+                        "src": "1038:13:215",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_contract$_AlarmService_$24021",
+                          "typeString": "contract AlarmService"
+                        }
+                      },
+                      "id": 24046,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "set",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 23980,
+                      "src": "1038:17:215",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_external_nonpayable$_t_uint256_$returns$_t_bool_$",
+                        "typeString": "function (uint256) external returns (bool)"
+                      }
+                    },
+                    "id": 24051,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1038:37:215",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 24052,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1038:37:215"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 24054,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "setAlarm",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 24042,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1009:2:215"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 24043,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1028:0:215"
+            },
+            "scope": 24055,
+            "src": "992:90:215",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 24056,
+        "src": "726:363:215"
+      }
+    ],
+    "src": "0:1089:215"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.24+commit.e67f0147.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "2.0.1",
+  "updatedAt": "2018-08-14T07:39:20.662Z"
+}
