@@ -72,6 +72,18 @@ var arachnidSolidityStringutilsSrcStringsTest = artifacts.require("./Arachnid/so
 
 var ShubhamTatvamasiLoopDefenderLoopDefender = artifacts.require("./ShubhamTatvamasi/LoopDefender/LoopDefender.sol");
 
+var ram1991SoliditySmartContractsTransferCoin = artifacts.require("./ram1991/Solidity-Smart-contracts/TransferCoin.sol");
+var ram1991SoliditySmartContractsincrementavalue = artifacts.require("./ram1991/Solidity-Smart-contracts/IncrementValue.sol");
+var ram1991SoliditySmartContractsFindaddress = artifacts.require("./ram1991/Solidity-Smart-contracts/Findaddress.sol");
+var ram1991SoliditySmartContractssimplecontract = artifacts.require("./ram1991/Solidity-Smart-contracts/SimpleContract.sol");
+var ram1991SoliditySmartContractsBank = artifacts.require("./ram1991/Solidity-Smart-contracts/Bank2.sol");
+var ram1991SoliditySmartContractsBlockAnAddress = artifacts.require("./ram1991/Solidity-Smart-contracts/BlockAnAddress.sol");
+var ram1991SoliditySmartContractsproduct = artifacts.require("./ram1991/Solidity-Smart-contracts/ProductSales.sol");
+var ram1991SoliditySmartContractsRentABook = artifacts.require("./ram1991/Solidity-Smart-contracts/RentABook.sol");
+var ram1991SoliditySmartContractshello = artifacts.require("./ram1991/Solidity-Smart-contracts/SayHello.sol");
+var ram1991SoliditySmartContractsTransferOwnership = artifacts.require("./ram1991/Solidity-Smart-contracts/TransferOwner.sol");
+var ram1991SoliditySmartContractsBasic = artifacts.require("./ram1991/Solidity-Smart-contracts/Basic.sol");
+
 const sigUtil = require("eth-sig-util")
 
 var alice_vote_hash = sigUtil.typedSignatureHash([{ type: 'string', name: 'Message', value: "Vote for Alice"}])
@@ -163,4 +175,16 @@ module.exports = function(deployer) {
   deployer.deploy(arachnidSolidityStringutilsSrcStringsTest);
 
   deployer.deploy(ShubhamTatvamasiLoopDefenderLoopDefender);
+
+  deployer.deploy(ram1991SoliditySmartContractsTransferCoin);
+  deployer.deploy(ram1991SoliditySmartContractsincrementavalue);
+  deployer.deploy(ram1991SoliditySmartContractsFindaddress);
+  deployer.deploy(ram1991SoliditySmartContractssimplecontract);
+  deployer.deploy(ram1991SoliditySmartContractsBank);
+  deployer.deploy(ram1991SoliditySmartContractsBlockAnAddress);
+  deployer.deploy(ram1991SoliditySmartContractsproduct);
+  deployer.deploy(ram1991SoliditySmartContractsRentABook);
+  deployer.deploy(ram1991SoliditySmartContractshello);
+  deployer.deploy(ram1991SoliditySmartContractsTransferOwnership);
+  deployer.deploy(ram1991SoliditySmartContractsBasic);
 };
