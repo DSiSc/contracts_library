@@ -1,0 +1,324 @@
+{
+  "contractName": "HasNoEtherTest",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "renounceOwnership",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "reclaimEther",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "transferOwnership",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "payable": true,
+      "stateMutability": "payable",
+      "type": "constructor"
+    },
+    {
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "fallback"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "previousOwner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnershipRenounced",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "previousOwner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnershipTransferred",
+      "type": "event"
+    }
+  ],
+  "bytecode": "0x6080604052336000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555060003414151561005357600080fd5b6104c9806100626000396000f300608060405260043610610062576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063715018a6146100715780638da5cb5b146100885780639f727c27146100df578063f2fde38b146100f6575b34801561006e57600080fd5b50005b34801561007d57600080fd5b50610086610139565b005b34801561009457600080fd5b5061009d61023b565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b3480156100eb57600080fd5b506100f4610260565b005b34801561010257600080fd5b50610137600480360381019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061033c565b005b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614151561019457600080fd5b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff167ff8df31144d9c2f0f6b59d69b8b98abd5459d07f2742c4df920b25aae33c6482060405160405180910390a260008060006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161415156102bb57600080fd5b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff166108fc3073ffffffffffffffffffffffffffffffffffffffff16319081150290604051600060405180830381858888f19350505050158015610339573d6000803e3d6000fd5b50565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614151561039757600080fd5b6103a0816103a3565b50565b600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff16141515156103df57600080fd5b8073ffffffffffffffffffffffffffffffffffffffff166000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e060405160405180910390a3806000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550505600a165627a7a72305820ef08c79bb500de646f16b20c8160ce62d2b752b68596fadedcdea7cddead21680029",
+  "deployedBytecode": "0x608060405260043610610062576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063715018a6146100715780638da5cb5b146100885780639f727c27146100df578063f2fde38b146100f6575b34801561006e57600080fd5b50005b34801561007d57600080fd5b50610086610139565b005b34801561009457600080fd5b5061009d61023b565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b3480156100eb57600080fd5b506100f4610260565b005b34801561010257600080fd5b50610137600480360381019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061033c565b005b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614151561019457600080fd5b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff167ff8df31144d9c2f0f6b59d69b8b98abd5459d07f2742c4df920b25aae33c6482060405160405180910390a260008060006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161415156102bb57600080fd5b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff166108fc3073ffffffffffffffffffffffffffffffffffffffff16319081150290604051600060405180830381858888f19350505050158015610339573d6000803e3d6000fd5b50565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614151561039757600080fd5b6103a0816103a3565b50565b600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff16141515156103df57600080fd5b8073ffffffffffffffffffffffffffffffffffffffff166000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e060405160405180910390a3806000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550505600a165627a7a72305820ef08c79bb500de646f16b20c8160ce62d2b752b68596fadedcdea7cddead21680029",
+  "sourceMap": "66:141:58:-;;;575:10:93;567:5;;:18;;;;;;;;;;;;;;;;;;971:1:89;958:9;:14;950:23;;;;;;;;66:141:58;;;;;;",
+  "deployedSourceMap": "66:141:58:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;66:141:58;;1001:111:93;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1001:111:93;;;;;;238:20;;8:9:-1;5:2;;;30:1;27;20:12;5:2;238:20:93;;;;;;;;;;;;;;;;;;;;;;;;;;;1189:91:89;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1189:91:89;;;;;;1274:103:93;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1274:103:93;;;;;;;;;;;;;;;;;;;;;;;;;;;;1001:111;719:5;;;;;;;;;;;705:19;;:10;:19;;;697:28;;;;;;;;1077:5;;;;;;;;;;;1058:25;;;;;;;;;;;;1105:1;1089:5;;:18;;;;;;;;;;;;;;;;;;1001:111::o;238:20::-;;;;;;;;;;;;;:::o;1189:91:89:-;719:5:93;;;;;;;;;;;705:19;;:10;:19;;;697:28;;;;;;;;1238:5:89;;;;;;;;;;;:14;;:37;1261:4;1253:21;;;1238:37;;;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;1238:37:89;1189:91::o;1274:103:93:-;719:5;;;;;;;;;;;705:19;;:10;:19;;;697:28;;;;;;;;1343:29;1362:9;1343:18;:29::i;:::-;1274:103;:::o;1512:171::-;1603:1;1582:23;;:9;:23;;;;1574:32;;;;;;;;1645:9;1617:38;;1638:5;;;;;;;;;;;1617:38;;;;;;;;;;;;1669:9;1661:5;;:17;;;;;;;;;;;;;;;;;;1512:171;:::o",
+  "source": "pragma solidity ^0.4.24;\n\nimport \"../ownership/HasNoEther.sol\";\n\n\ncontract HasNoEtherTest is HasNoEther {\n\n  // Constructor with explicit payable — should still fail\n  constructor() public payable {\n  }\n\n}\n",
+  "sourcePath": "/home/liweibo/code/solidity/contracts_library/contracts_library/channel-gravy-token/contracts/OpenZeppelin/openzeppelin-solidity/mocks/HasNoEtherTest.sol",
+  "ast": {
+    "absolutePath": "/home/liweibo/code/solidity/contracts_library/contracts_library/channel-gravy-token/contracts/OpenZeppelin/openzeppelin-solidity/mocks/HasNoEtherTest.sol",
+    "exportedSymbols": {
+      "HasNoEtherTest": [
+        6910
+      ]
+    },
+    "id": 6911,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 6902,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".24"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:58"
+      },
+      {
+        "absolutePath": "/home/liweibo/code/solidity/contracts_library/contracts_library/channel-gravy-token/contracts/OpenZeppelin/openzeppelin-solidity/ownership/HasNoEther.sol",
+        "file": "../ownership/HasNoEther.sol",
+        "id": 6903,
+        "nodeType": "ImportDirective",
+        "scope": 6911,
+        "sourceUnit": 8293,
+        "src": "26:37:58",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 6904,
+              "name": "HasNoEther",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 8292,
+              "src": "93:10:58",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_HasNoEther_$8292",
+                "typeString": "contract HasNoEther"
+              }
+            },
+            "id": 6905,
+            "nodeType": "InheritanceSpecifier",
+            "src": "93:10:58"
+          }
+        ],
+        "contractDependencies": [
+          8292,
+          8639
+        ],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 6910,
+        "linearizedBaseContracts": [
+          6910,
+          8292,
+          8639
+        ],
+        "name": "HasNoEtherTest",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 6908,
+              "nodeType": "Block",
+              "src": "199:5:58",
+              "statements": []
+            },
+            "documentation": null,
+            "id": 6909,
+            "implemented": true,
+            "isConstructor": true,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 6906,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "181:2:58"
+            },
+            "payable": true,
+            "returnParameters": {
+              "id": 6907,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "199:0:58"
+            },
+            "scope": 6910,
+            "src": "170:34:58",
+            "stateMutability": "payable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 6911,
+        "src": "66:141:58"
+      }
+    ],
+    "src": "0:208:58"
+  },
+  "legacyAST": {
+    "absolutePath": "/home/liweibo/code/solidity/contracts_library/contracts_library/channel-gravy-token/contracts/OpenZeppelin/openzeppelin-solidity/mocks/HasNoEtherTest.sol",
+    "exportedSymbols": {
+      "HasNoEtherTest": [
+        6910
+      ]
+    },
+    "id": 6911,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 6902,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".24"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:58"
+      },
+      {
+        "absolutePath": "/home/liweibo/code/solidity/contracts_library/contracts_library/channel-gravy-token/contracts/OpenZeppelin/openzeppelin-solidity/ownership/HasNoEther.sol",
+        "file": "../ownership/HasNoEther.sol",
+        "id": 6903,
+        "nodeType": "ImportDirective",
+        "scope": 6911,
+        "sourceUnit": 8293,
+        "src": "26:37:58",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 6904,
+              "name": "HasNoEther",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 8292,
+              "src": "93:10:58",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_HasNoEther_$8292",
+                "typeString": "contract HasNoEther"
+              }
+            },
+            "id": 6905,
+            "nodeType": "InheritanceSpecifier",
+            "src": "93:10:58"
+          }
+        ],
+        "contractDependencies": [
+          8292,
+          8639
+        ],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 6910,
+        "linearizedBaseContracts": [
+          6910,
+          8292,
+          8639
+        ],
+        "name": "HasNoEtherTest",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 6908,
+              "nodeType": "Block",
+              "src": "199:5:58",
+              "statements": []
+            },
+            "documentation": null,
+            "id": 6909,
+            "implemented": true,
+            "isConstructor": true,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 6906,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "181:2:58"
+            },
+            "payable": true,
+            "returnParameters": {
+              "id": 6907,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "199:0:58"
+            },
+            "scope": 6910,
+            "src": "170:34:58",
+            "stateMutability": "payable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 6911,
+        "src": "66:141:58"
+      }
+    ],
+    "src": "0:208:58"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.24+commit.e67f0147.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "2.0.1",
+  "updatedAt": "2018-08-14T06:52:16.402Z"
+}

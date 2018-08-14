@@ -1,0 +1,1266 @@
+{
+  "contractName": "EtherTransferFrom",
+  "abi": [
+    {
+      "inputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "payable": true,
+      "stateMutability": "payable",
+      "type": "fallback"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "getBalance",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "getBalanceOfInstance",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x608060405234801561001057600080fd5b5061001961007a565b604051809103906000f080158015610035573d6000803e3d6000fd5b506000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550610089565b60405160d2806102a583390190565b61020d806100986000396000f30060806040526004361061004c576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806312065fe0146100a5578063d7e0e776146100d0575b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff166108fc349081150290604051600060405180830381858888f1935050505050005b3480156100b157600080fd5b506100ba6100fb565b6040518082815260200191505060405180910390f35b3480156100dc57600080fd5b506100e561011a565b6040518082815260200191505060405180910390f35b60003073ffffffffffffffffffffffffffffffffffffffff1631905090565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff166312065fe06040518163ffffffff167c0100000000000000000000000000000000000000000000000000000000028152600401602060405180830381600087803b1580156101a157600080fd5b505af11580156101b5573d6000803e3d6000fd5b505050506040513d60208110156101cb57600080fd5b81019080805190602001909291905050509050905600a165627a7a723058205b06625443a918e75caa8a190095ff6120bb1871f0d3e6218a323a018e3e9abe00296080604052348015600f57600080fd5b5060b48061001e6000396000f300608060405260043610603f576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806312065fe0146041575b005b348015604c57600080fd5b5060536069565b6040518082815260200191505060405180910390f35b60003073ffffffffffffffffffffffffffffffffffffffff16319050905600a165627a7a723058203313e5cc2c0309fbd9ea72ddba001f0e06d322fb785da882afd98b92ad3cb3a70029",
+  "deployedBytecode": "0x60806040526004361061004c576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806312065fe0146100a5578063d7e0e776146100d0575b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff166108fc349081150290604051600060405180830381858888f1935050505050005b3480156100b157600080fd5b506100ba6100fb565b6040518082815260200191505060405180910390f35b3480156100dc57600080fd5b506100e561011a565b6040518082815260200191505060405180910390f35b60003073ffffffffffffffffffffffffffffffffffffffff1631905090565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff166312065fe06040518163ffffffff167c0100000000000000000000000000000000000000000000000000000000028152600401602060405180830381600087803b1580156101a157600080fd5b505af11580156101b5573d6000803e3d6000fd5b505050506040513d60208110156101cb57600080fd5b81019080805190602001909291905050509050905600a165627a7a723058205b06625443a918e75caa8a190095ff6120bb1871f0d3e6218a323a018e3e9abe0029",
+  "sourceMap": "58:605:212:-;;;140:141;8:9:-1;5:2;;;30:1;27;20:12;5:2;140:141:212;253:21;;:::i;:::-;;;;;;;;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;253:21:212;241:9;;:33;;;;;;;;;;;;;;;;;;58:605;;;;;;;;;;;;:::o;:::-;;;;;;;",
+  "deployedSourceMap": "58:605:212:-;;;;;;;;;;;;;;;;;;;;;;;;;;628:9;;;;;;;;;;;620:23;;:34;644:9;620:34;;;;;;;;;;;;;;;;;;;;;;;;58:605;291:89;;8:9:-1;5:2;;;30:1;27;20:12;5:2;291:89:212;;;;;;;;;;;;;;;;;;;;;;;390:145;;8:9:-1;5:2;;;30:1;27;20:12;5:2;390:145:212;;;;;;;;;;;;;;;;;;;;;;;291:89;329:4;360;352:21;;;345:28;;291:89;:::o;390:145::-;438:4;506:9;;;;;;;;;;;:20;;;:22;;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;506:22:212;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;506:22:212;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;506:22:212;;;;;;;;;;;;;;;;499:29;;390:145;:::o",
+  "source": "pragma solidity ^0.4.0;\n\nimport \"./EtherTransferTo.sol\";\n\ncontract EtherTransferFrom {\n    \n    EtherTransferTo private _instance;\n    \n    function EtherTransferFrom() public {\n        // _instance = EtherTransferTo(address(this));\n        _instance = new EtherTransferTo();\n    }\n    \n    function getBalance() public returns (uint) {\n        return address(this).balance;\n    }\n    \n    function getBalanceOfInstance() public returns (uint) {\n        //return address(_instance).balance;\n        return _instance.getBalance();\n    }\n    \n    function () public payable {\n        //msg.sender.send(msg.value);\n        address(_instance).send(msg.value);\n    }\n}",
+  "sourcePath": "/home/liweibo/code/solidity/contracts_library/contracts_library/channel-gravy-token/contracts/willitscale/learning-solidity/tutorial-14/EtherTransferFrom.sol",
+  "ast": {
+    "absolutePath": "/home/liweibo/code/solidity/contracts_library/contracts_library/channel-gravy-token/contracts/willitscale/learning-solidity/tutorial-14/EtherTransferFrom.sol",
+    "exportedSymbols": {
+      "EtherTransferFrom": [
+        23889
+      ]
+    },
+    "id": 23890,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 23842,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:212"
+      },
+      {
+        "absolutePath": "/home/liweibo/code/solidity/contracts_library/contracts_library/channel-gravy-token/contracts/willitscale/learning-solidity/tutorial-14/EtherTransferTo.sol",
+        "file": "./EtherTransferTo.sol",
+        "id": 23843,
+        "nodeType": "ImportDirective",
+        "scope": 23890,
+        "sourceUnit": 23908,
+        "src": "25:31:212",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [
+          23907
+        ],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 23889,
+        "linearizedBaseContracts": [
+          23889
+        ],
+        "name": "EtherTransferFrom",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 23845,
+            "name": "_instance",
+            "nodeType": "VariableDeclaration",
+            "scope": 23889,
+            "src": "96:33:212",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_contract$_EtherTransferTo_$23907",
+              "typeString": "contract EtherTransferTo"
+            },
+            "typeName": {
+              "contractScope": null,
+              "id": 23844,
+              "name": "EtherTransferTo",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 23907,
+              "src": "96:15:212",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_EtherTransferTo_$23907",
+                "typeString": "contract EtherTransferTo"
+              }
+            },
+            "value": null,
+            "visibility": "private"
+          },
+          {
+            "body": {
+              "id": 23854,
+              "nodeType": "Block",
+              "src": "176:105:212",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 23852,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 23848,
+                      "name": "_instance",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 23845,
+                      "src": "241:9:212",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_EtherTransferTo_$23907",
+                        "typeString": "contract EtherTransferTo"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "arguments": [],
+                      "expression": {
+                        "argumentTypes": [],
+                        "id": 23850,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "NewExpression",
+                        "src": "253:19:212",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_function_creation_nonpayable$__$returns$_t_contract$_EtherTransferTo_$23907_$",
+                          "typeString": "function () returns (contract EtherTransferTo)"
+                        },
+                        "typeName": {
+                          "contractScope": null,
+                          "id": 23849,
+                          "name": "EtherTransferTo",
+                          "nodeType": "UserDefinedTypeName",
+                          "referencedDeclaration": 23907,
+                          "src": "257:15:212",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_contract$_EtherTransferTo_$23907",
+                            "typeString": "contract EtherTransferTo"
+                          }
+                        }
+                      },
+                      "id": 23851,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "functionCall",
+                      "lValueRequested": false,
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "253:21:212",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_EtherTransferTo_$23907",
+                        "typeString": "contract EtherTransferTo"
+                      }
+                    },
+                    "src": "241:33:212",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_EtherTransferTo_$23907",
+                      "typeString": "contract EtherTransferTo"
+                    }
+                  },
+                  "id": 23853,
+                  "nodeType": "ExpressionStatement",
+                  "src": "241:33:212"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 23855,
+            "implemented": true,
+            "isConstructor": true,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "EtherTransferFrom",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 23846,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "166:2:212"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 23847,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "176:0:212"
+            },
+            "scope": 23889,
+            "src": "140:141:212",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 23865,
+              "nodeType": "Block",
+              "src": "335:45:212",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "expression": {
+                      "argumentTypes": null,
+                      "arguments": [
+                        {
+                          "argumentTypes": null,
+                          "id": 23861,
+                          "name": "this",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 27839,
+                          "src": "360:4:212",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_contract$_EtherTransferFrom_$23889",
+                            "typeString": "contract EtherTransferFrom"
+                          }
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_contract$_EtherTransferFrom_$23889",
+                            "typeString": "contract EtherTransferFrom"
+                          }
+                        ],
+                        "id": 23860,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "lValueRequested": false,
+                        "nodeType": "ElementaryTypeNameExpression",
+                        "src": "352:7:212",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_address_$",
+                          "typeString": "type(address)"
+                        },
+                        "typeName": "address"
+                      },
+                      "id": 23862,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "typeConversion",
+                      "lValueRequested": false,
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "352:13:212",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 23863,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "memberName": "balance",
+                    "nodeType": "MemberAccess",
+                    "referencedDeclaration": null,
+                    "src": "352:21:212",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 23859,
+                  "id": 23864,
+                  "nodeType": "Return",
+                  "src": "345:28:212"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 23866,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "getBalance",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 23856,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "310:2:212"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 23859,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 23858,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 23866,
+                  "src": "329:4:212",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 23857,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "329:4:212",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "328:6:212"
+            },
+            "scope": 23889,
+            "src": "291:89:212",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 23875,
+              "nodeType": "Block",
+              "src": "444:91:212",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [],
+                    "expression": {
+                      "argumentTypes": [],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 23871,
+                        "name": "_instance",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 23845,
+                        "src": "506:9:212",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_contract$_EtherTransferTo_$23907",
+                          "typeString": "contract EtherTransferTo"
+                        }
+                      },
+                      "id": 23872,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "getBalance",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 23906,
+                      "src": "506:20:212",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_external_nonpayable$__$returns$_t_uint256_$",
+                        "typeString": "function () external returns (uint256)"
+                      }
+                    },
+                    "id": 23873,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "506:22:212",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 23870,
+                  "id": 23874,
+                  "nodeType": "Return",
+                  "src": "499:29:212"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 23876,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "getBalanceOfInstance",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 23867,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "419:2:212"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 23870,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 23869,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 23876,
+                  "src": "438:4:212",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 23868,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "438:4:212",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "437:6:212"
+            },
+            "scope": 23889,
+            "src": "390:145:212",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 23887,
+              "nodeType": "Block",
+              "src": "572:89:212",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 23883,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 27338,
+                          "src": "644:3:212",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 23884,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "value",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": null,
+                        "src": "644:9:212",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "arguments": [
+                          {
+                            "argumentTypes": null,
+                            "id": 23880,
+                            "name": "_instance",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 23845,
+                            "src": "628:9:212",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_contract$_EtherTransferTo_$23907",
+                              "typeString": "contract EtherTransferTo"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_contract$_EtherTransferTo_$23907",
+                              "typeString": "contract EtherTransferTo"
+                            }
+                          ],
+                          "id": 23879,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "nodeType": "ElementaryTypeNameExpression",
+                          "src": "620:7:212",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_type$_t_address_$",
+                            "typeString": "type(address)"
+                          },
+                          "typeName": "address"
+                        },
+                        "id": 23881,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "typeConversion",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "620:18:212",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "id": 23882,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "send",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "620:23:212",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_send_nonpayable$_t_uint256_$returns$_t_bool_$",
+                        "typeString": "function (uint256) returns (bool)"
+                      }
+                    },
+                    "id": 23885,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "620:34:212",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 23886,
+                  "nodeType": "ExpressionStatement",
+                  "src": "620:34:212"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 23888,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 23877,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "554:2:212"
+            },
+            "payable": true,
+            "returnParameters": {
+              "id": 23878,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "572:0:212"
+            },
+            "scope": 23889,
+            "src": "545:116:212",
+            "stateMutability": "payable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 23890,
+        "src": "58:605:212"
+      }
+    ],
+    "src": "0:663:212"
+  },
+  "legacyAST": {
+    "absolutePath": "/home/liweibo/code/solidity/contracts_library/contracts_library/channel-gravy-token/contracts/willitscale/learning-solidity/tutorial-14/EtherTransferFrom.sol",
+    "exportedSymbols": {
+      "EtherTransferFrom": [
+        23889
+      ]
+    },
+    "id": 23890,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 23842,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:212"
+      },
+      {
+        "absolutePath": "/home/liweibo/code/solidity/contracts_library/contracts_library/channel-gravy-token/contracts/willitscale/learning-solidity/tutorial-14/EtherTransferTo.sol",
+        "file": "./EtherTransferTo.sol",
+        "id": 23843,
+        "nodeType": "ImportDirective",
+        "scope": 23890,
+        "sourceUnit": 23908,
+        "src": "25:31:212",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [
+          23907
+        ],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 23889,
+        "linearizedBaseContracts": [
+          23889
+        ],
+        "name": "EtherTransferFrom",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 23845,
+            "name": "_instance",
+            "nodeType": "VariableDeclaration",
+            "scope": 23889,
+            "src": "96:33:212",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_contract$_EtherTransferTo_$23907",
+              "typeString": "contract EtherTransferTo"
+            },
+            "typeName": {
+              "contractScope": null,
+              "id": 23844,
+              "name": "EtherTransferTo",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 23907,
+              "src": "96:15:212",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_EtherTransferTo_$23907",
+                "typeString": "contract EtherTransferTo"
+              }
+            },
+            "value": null,
+            "visibility": "private"
+          },
+          {
+            "body": {
+              "id": 23854,
+              "nodeType": "Block",
+              "src": "176:105:212",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 23852,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 23848,
+                      "name": "_instance",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 23845,
+                      "src": "241:9:212",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_EtherTransferTo_$23907",
+                        "typeString": "contract EtherTransferTo"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "arguments": [],
+                      "expression": {
+                        "argumentTypes": [],
+                        "id": 23850,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "NewExpression",
+                        "src": "253:19:212",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_function_creation_nonpayable$__$returns$_t_contract$_EtherTransferTo_$23907_$",
+                          "typeString": "function () returns (contract EtherTransferTo)"
+                        },
+                        "typeName": {
+                          "contractScope": null,
+                          "id": 23849,
+                          "name": "EtherTransferTo",
+                          "nodeType": "UserDefinedTypeName",
+                          "referencedDeclaration": 23907,
+                          "src": "257:15:212",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_contract$_EtherTransferTo_$23907",
+                            "typeString": "contract EtherTransferTo"
+                          }
+                        }
+                      },
+                      "id": 23851,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "functionCall",
+                      "lValueRequested": false,
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "253:21:212",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_EtherTransferTo_$23907",
+                        "typeString": "contract EtherTransferTo"
+                      }
+                    },
+                    "src": "241:33:212",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_EtherTransferTo_$23907",
+                      "typeString": "contract EtherTransferTo"
+                    }
+                  },
+                  "id": 23853,
+                  "nodeType": "ExpressionStatement",
+                  "src": "241:33:212"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 23855,
+            "implemented": true,
+            "isConstructor": true,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "EtherTransferFrom",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 23846,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "166:2:212"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 23847,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "176:0:212"
+            },
+            "scope": 23889,
+            "src": "140:141:212",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 23865,
+              "nodeType": "Block",
+              "src": "335:45:212",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "expression": {
+                      "argumentTypes": null,
+                      "arguments": [
+                        {
+                          "argumentTypes": null,
+                          "id": 23861,
+                          "name": "this",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 27839,
+                          "src": "360:4:212",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_contract$_EtherTransferFrom_$23889",
+                            "typeString": "contract EtherTransferFrom"
+                          }
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_contract$_EtherTransferFrom_$23889",
+                            "typeString": "contract EtherTransferFrom"
+                          }
+                        ],
+                        "id": 23860,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "lValueRequested": false,
+                        "nodeType": "ElementaryTypeNameExpression",
+                        "src": "352:7:212",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_address_$",
+                          "typeString": "type(address)"
+                        },
+                        "typeName": "address"
+                      },
+                      "id": 23862,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "typeConversion",
+                      "lValueRequested": false,
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "352:13:212",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 23863,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "memberName": "balance",
+                    "nodeType": "MemberAccess",
+                    "referencedDeclaration": null,
+                    "src": "352:21:212",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 23859,
+                  "id": 23864,
+                  "nodeType": "Return",
+                  "src": "345:28:212"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 23866,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "getBalance",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 23856,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "310:2:212"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 23859,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 23858,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 23866,
+                  "src": "329:4:212",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 23857,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "329:4:212",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "328:6:212"
+            },
+            "scope": 23889,
+            "src": "291:89:212",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 23875,
+              "nodeType": "Block",
+              "src": "444:91:212",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [],
+                    "expression": {
+                      "argumentTypes": [],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 23871,
+                        "name": "_instance",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 23845,
+                        "src": "506:9:212",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_contract$_EtherTransferTo_$23907",
+                          "typeString": "contract EtherTransferTo"
+                        }
+                      },
+                      "id": 23872,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "getBalance",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 23906,
+                      "src": "506:20:212",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_external_nonpayable$__$returns$_t_uint256_$",
+                        "typeString": "function () external returns (uint256)"
+                      }
+                    },
+                    "id": 23873,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "506:22:212",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 23870,
+                  "id": 23874,
+                  "nodeType": "Return",
+                  "src": "499:29:212"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 23876,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "getBalanceOfInstance",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 23867,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "419:2:212"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 23870,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 23869,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 23876,
+                  "src": "438:4:212",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 23868,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "438:4:212",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "437:6:212"
+            },
+            "scope": 23889,
+            "src": "390:145:212",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 23887,
+              "nodeType": "Block",
+              "src": "572:89:212",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 23883,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 27338,
+                          "src": "644:3:212",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 23884,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "value",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": null,
+                        "src": "644:9:212",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "arguments": [
+                          {
+                            "argumentTypes": null,
+                            "id": 23880,
+                            "name": "_instance",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 23845,
+                            "src": "628:9:212",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_contract$_EtherTransferTo_$23907",
+                              "typeString": "contract EtherTransferTo"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_contract$_EtherTransferTo_$23907",
+                              "typeString": "contract EtherTransferTo"
+                            }
+                          ],
+                          "id": 23879,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "nodeType": "ElementaryTypeNameExpression",
+                          "src": "620:7:212",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_type$_t_address_$",
+                            "typeString": "type(address)"
+                          },
+                          "typeName": "address"
+                        },
+                        "id": 23881,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "typeConversion",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "620:18:212",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "id": 23882,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "send",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "620:23:212",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_send_nonpayable$_t_uint256_$returns$_t_bool_$",
+                        "typeString": "function (uint256) returns (bool)"
+                      }
+                    },
+                    "id": 23885,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "620:34:212",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 23886,
+                  "nodeType": "ExpressionStatement",
+                  "src": "620:34:212"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 23888,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 23877,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "554:2:212"
+            },
+            "payable": true,
+            "returnParameters": {
+              "id": 23878,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "572:0:212"
+            },
+            "scope": 23889,
+            "src": "545:116:212",
+            "stateMutability": "payable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 23890,
+        "src": "58:605:212"
+      }
+    ],
+    "src": "0:663:212"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.24+commit.e67f0147.Emscripten.clang"
+  },
+  "networks": {
+    "5777": {
+      "events": {},
+      "links": {},
+      "address": "0x945aa9f6ad2f14e3ce019a94ddf8bbcb9faabd4d",
+      "transactionHash": "0x0364327f39a484e568d9c6834c6768166837ae4b2e06e5c8e63972e1c94c7680"
+    }
+  },
+  "schemaVersion": "2.0.1",
+  "updatedAt": "2018-08-14T06:52:45.239Z"
+}

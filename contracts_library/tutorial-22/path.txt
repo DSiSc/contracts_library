@@ -1,1 +1,0 @@
-/willitscale/learning-solidity/tutorial-22

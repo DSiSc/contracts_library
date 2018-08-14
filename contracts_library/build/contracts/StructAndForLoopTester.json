@@ -1,0 +1,2471 @@
+{
+  "contractName": "StructAndForLoopTester",
+  "abi": [
+    {
+      "inputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "x",
+          "type": "uint8"
+        },
+        {
+          "name": "y",
+          "type": "uint8"
+        }
+      ],
+      "name": "getElevation",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "kill",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x60806040526009600060146101000a81548160ff021916908360ff16021790555034801561002c57600080fd5b50600080336000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550600091505b600060149054906101000a900460ff1660ff168260ff16101561012757600090505b600060149054906101000a900460ff1660ff168160ff16101561011a578082600060149054906101000a900460ff16020160018260ff166009811015156100da57fe5b601202018360ff166009811015156100ee57fe5b6002020160010160146101000a81548160ff021916908360ff1602179055508080600101915050610097565b8180600101925050610075565b50506101c1806101386000396000f30060806040526004361061004c576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680634166c1fd1461005157806341c0e1b5146100a8575b600080fd5b34801561005d57600080fd5b5061008c600480360381019080803560ff169060200190929190803560ff1690602001909291905050506100bf565b604051808260ff1660ff16815260200191505060405180910390f35b3480156100b457600080fd5b506100bd610104565b005b600060018360ff166009811015156100d357fe5b601202018260ff166009811015156100e757fe5b6002020160010160149054906101000a900460ff16905092915050565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161415610193576000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16ff5b5600a165627a7a72305820cdbd7f653474b97eec1e6d9d346d3b86726d8a58d409889223395aa4f06cb9ca0029",
+  "deployedBytecode": "0x60806040526004361061004c576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680634166c1fd1461005157806341c0e1b5146100a8575b600080fd5b34801561005d57600080fd5b5061008c600480360381019080803560ff169060200190929190803560ff1690602001909291905050506100bf565b604051808260ff1660ff16815260200191505060405180910390f35b3480156100b457600080fd5b506100bd610104565b005b600060018360ff166009811015156100d357fe5b601202018260ff166009811015156100e757fe5b6002020160010160149054906101000a900460ff16905092915050565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161415610193576000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16ff5b5600a165627a7a72305820cdbd7f653474b97eec1e6d9d346d3b86726d8a58d409889223395aa4f06cb9ca0029",
+  "sourceMap": "242:930:139:-;;;318:1;302:17;;;;;;;;;;;;;;;;;;;;471:303;8:9:-1;5:2;;;30:1;27;20:12;5:2;471:303:139;554:7;605;530:10;520:7;;:20;;;;;;;;;;;;;;;;;;564:1;554:11;;550:217;571:7;;;;;;;;;;;567:11;;:1;:11;;;550:217;;;615:1;605:11;;601:155;622:7;;;;;;;;;;;618:11;;:1;:11;;;601:155;;;693:1;689;681:7;;;;;;;;;;;:9;:13;657:5;663:1;657:8;;;;;;;;;;;;;;666:1;657:11;;;;;;;;;;;;;;:21;;;:37;;;;;;;;;;;;;;;;;;631:3;;;;;;;601:155;;;580:3;;;;;;;550:217;;;471:303;;242:930;;;;;;",
+  "deployedSourceMap": "242:930:139:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;784:111;;8:9:-1;5:2;;;30:1;27;20:12;5:2;784:111:139;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;991:179;;8:9:-1;5:2;;;30:1;27;20:12;5:2;991:179:139;;;;;;784:111;842:5;867;873:1;867:8;;;;;;;;;;;;;;876:1;867:11;;;;;;;;;;;;;;:21;;;;;;;;;;;;860:28;;784:111;;;;:::o;991:179::-;1040:7;;;;;;;;;;;1026:21;;:10;:21;;;1022:142;;;1079:7;;;;;;;;;;;1071:16;;;1022:142;991:179::o",
+  "source": "// This contract creates a 9x9 map of Tile objects. \n// Each tile has an elevation value (as well as an owner and descriptorContract which aren't used here)\n// \n// In the constructor, the elevations are set to standard values via for loops.\n\ncontract StructAndForLoopTester {\n\n    address creator;\n    uint8 mapsize = 9;\n    Tile[9][9] tiles; \n    \n    struct Tile \n    {\n        address owner;\n        address descriptorContract;\n        uint8 elevation;\n    }\n    \n    function StructAndForLoopTester() \n    {\n        creator = msg.sender;\n        for(uint8 y = 0; y < mapsize; y++)\n    \t{\n        \tfor(uint8 x = 0; x < mapsize; x++)\n        \t{\n        \t\ttiles[x][y].elevation = mapsize*y + x; // row 0: 0, 1, 2, 3, 4...   row 1: 9, 10, 11, 12\n        \t}\t\n        }\t\n    }\n    \n    function getElevation(uint8 x, uint8 y) constant returns (uint8)\n    {\n    \treturn tiles[x][y].elevation;\n    }\n    \n    /**********\n     Standard kill() function to recover funds \n     **********/\n    \n    function kill()\n    { \n        if (msg.sender == creator)\n        {\n            suicide(creator);  // kills this contract and sends remaining funds back to creator\n        }\n    }\n}",
+  "sourcePath": "/home/liweibo/code/solidity/contracts_library/contracts_library/channel-gravy-token/contracts/fivedogit/solidity-baby-steps/contracts/StructAndForLoopTester.sol",
+  "ast": {
+    "absolutePath": "/home/liweibo/code/solidity/contracts_library/contracts_library/channel-gravy-token/contracts/fivedogit/solidity-baby-steps/contracts/StructAndForLoopTester.sol",
+    "exportedSymbols": {
+      "StructAndForLoopTester": [
+        14396
+      ]
+    },
+    "id": 14397,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 14396,
+        "linearizedBaseContracts": [
+          14396
+        ],
+        "name": "StructAndForLoopTester",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 14302,
+            "name": "creator",
+            "nodeType": "VariableDeclaration",
+            "scope": 14396,
+            "src": "281:15:139",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address",
+              "typeString": "address"
+            },
+            "typeName": {
+              "id": 14301,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "281:7:139",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 14305,
+            "name": "mapsize",
+            "nodeType": "VariableDeclaration",
+            "scope": 14396,
+            "src": "302:17:139",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint8",
+              "typeString": "uint8"
+            },
+            "typeName": {
+              "id": 14303,
+              "name": "uint8",
+              "nodeType": "ElementaryTypeName",
+              "src": "302:5:139",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint8",
+                "typeString": "uint8"
+              }
+            },
+            "value": {
+              "argumentTypes": null,
+              "hexValue": "39",
+              "id": 14304,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "number",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "318:1:139",
+              "subdenomination": null,
+              "typeDescriptions": {
+                "typeIdentifier": "t_rational_9_by_1",
+                "typeString": "int_const 9"
+              },
+              "value": "9"
+            },
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 14311,
+            "name": "tiles",
+            "nodeType": "VariableDeclaration",
+            "scope": 14396,
+            "src": "325:16:139",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_array$_t_array$_t_struct$_Tile_$14318_storage_$9_storage_$9_storage",
+              "typeString": "struct StructAndForLoopTester.Tile[9][9]"
+            },
+            "typeName": {
+              "baseType": {
+                "baseType": {
+                  "contractScope": null,
+                  "id": 14306,
+                  "name": "Tile",
+                  "nodeType": "UserDefinedTypeName",
+                  "referencedDeclaration": 14318,
+                  "src": "325:4:139",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_Tile_$14318_storage_ptr",
+                    "typeString": "struct StructAndForLoopTester.Tile"
+                  }
+                },
+                "id": 14308,
+                "length": {
+                  "argumentTypes": null,
+                  "hexValue": "39",
+                  "id": 14307,
+                  "isConstant": false,
+                  "isLValue": false,
+                  "isPure": false,
+                  "kind": "number",
+                  "lValueRequested": false,
+                  "nodeType": "Literal",
+                  "src": "330:1:139",
+                  "subdenomination": null,
+                  "typeDescriptions": {
+                    "typeIdentifier": null,
+                    "typeString": null
+                  },
+                  "value": "9"
+                },
+                "nodeType": "ArrayTypeName",
+                "src": "325:7:139",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_struct$_Tile_$14318_storage_$9_storage_ptr",
+                  "typeString": "struct StructAndForLoopTester.Tile[9]"
+                }
+              },
+              "id": 14310,
+              "length": {
+                "argumentTypes": null,
+                "hexValue": "39",
+                "id": 14309,
+                "isConstant": false,
+                "isLValue": false,
+                "isPure": false,
+                "kind": "number",
+                "lValueRequested": false,
+                "nodeType": "Literal",
+                "src": "333:1:139",
+                "subdenomination": null,
+                "typeDescriptions": {
+                  "typeIdentifier": null,
+                  "typeString": null
+                },
+                "value": "9"
+              },
+              "nodeType": "ArrayTypeName",
+              "src": "325:10:139",
+              "typeDescriptions": {
+                "typeIdentifier": "t_array$_t_array$_t_struct$_Tile_$14318_storage_$9_storage_$9_storage_ptr",
+                "typeString": "struct StructAndForLoopTester.Tile[9][9]"
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "canonicalName": "StructAndForLoopTester.Tile",
+            "id": 14318,
+            "members": [
+              {
+                "constant": false,
+                "id": 14313,
+                "name": "owner",
+                "nodeType": "VariableDeclaration",
+                "scope": 14318,
+                "src": "380:13:139",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 14312,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "380:7:139",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 14315,
+                "name": "descriptorContract",
+                "nodeType": "VariableDeclaration",
+                "scope": 14318,
+                "src": "403:26:139",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 14314,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "403:7:139",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 14317,
+                "name": "elevation",
+                "nodeType": "VariableDeclaration",
+                "scope": 14318,
+                "src": "439:15:139",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint8",
+                  "typeString": "uint8"
+                },
+                "typeName": {
+                  "id": 14316,
+                  "name": "uint8",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "439:5:139",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "Tile",
+            "nodeType": "StructDefinition",
+            "scope": 14396,
+            "src": "353:108:139",
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 14363,
+              "nodeType": "Block",
+              "src": "510:264:139",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 14324,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 14321,
+                      "name": "creator",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 14302,
+                      "src": "520:7:139",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 14322,
+                        "name": "msg",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 27338,
+                        "src": "530:3:139",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_magic_message",
+                          "typeString": "msg"
+                        }
+                      },
+                      "id": 14323,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "sender",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "530:10:139",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "src": "520:20:139",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "id": 14325,
+                  "nodeType": "ExpressionStatement",
+                  "src": "520:20:139"
+                },
+                {
+                  "body": {
+                    "id": 14361,
+                    "nodeType": "Block",
+                    "src": "590:177:139",
+                    "statements": [
+                      {
+                        "body": {
+                          "id": 14359,
+                          "nodeType": "Block",
+                          "src": "645:111:139",
+                          "statements": [
+                            {
+                              "expression": {
+                                "argumentTypes": null,
+                                "id": 14357,
+                                "isConstant": false,
+                                "isLValue": false,
+                                "isPure": false,
+                                "lValueRequested": false,
+                                "leftHandSide": {
+                                  "argumentTypes": null,
+                                  "expression": {
+                                    "argumentTypes": null,
+                                    "baseExpression": {
+                                      "argumentTypes": null,
+                                      "baseExpression": {
+                                        "argumentTypes": null,
+                                        "id": 14346,
+                                        "name": "tiles",
+                                        "nodeType": "Identifier",
+                                        "overloadedDeclarations": [],
+                                        "referencedDeclaration": 14311,
+                                        "src": "657:5:139",
+                                        "typeDescriptions": {
+                                          "typeIdentifier": "t_array$_t_array$_t_struct$_Tile_$14318_storage_$9_storage_$9_storage",
+                                          "typeString": "struct StructAndForLoopTester.Tile storage ref[9] storage ref[9] storage ref"
+                                        }
+                                      },
+                                      "id": 14349,
+                                      "indexExpression": {
+                                        "argumentTypes": null,
+                                        "id": 14347,
+                                        "name": "x",
+                                        "nodeType": "Identifier",
+                                        "overloadedDeclarations": [],
+                                        "referencedDeclaration": 14337,
+                                        "src": "663:1:139",
+                                        "typeDescriptions": {
+                                          "typeIdentifier": "t_uint8",
+                                          "typeString": "uint8"
+                                        }
+                                      },
+                                      "isConstant": false,
+                                      "isLValue": true,
+                                      "isPure": false,
+                                      "lValueRequested": false,
+                                      "nodeType": "IndexAccess",
+                                      "src": "657:8:139",
+                                      "typeDescriptions": {
+                                        "typeIdentifier": "t_array$_t_struct$_Tile_$14318_storage_$9_storage",
+                                        "typeString": "struct StructAndForLoopTester.Tile storage ref[9] storage ref"
+                                      }
+                                    },
+                                    "id": 14350,
+                                    "indexExpression": {
+                                      "argumentTypes": null,
+                                      "id": 14348,
+                                      "name": "y",
+                                      "nodeType": "Identifier",
+                                      "overloadedDeclarations": [],
+                                      "referencedDeclaration": 14327,
+                                      "src": "666:1:139",
+                                      "typeDescriptions": {
+                                        "typeIdentifier": "t_uint8",
+                                        "typeString": "uint8"
+                                      }
+                                    },
+                                    "isConstant": false,
+                                    "isLValue": true,
+                                    "isPure": false,
+                                    "lValueRequested": false,
+                                    "nodeType": "IndexAccess",
+                                    "src": "657:11:139",
+                                    "typeDescriptions": {
+                                      "typeIdentifier": "t_struct$_Tile_$14318_storage",
+                                      "typeString": "struct StructAndForLoopTester.Tile storage ref"
+                                    }
+                                  },
+                                  "id": 14351,
+                                  "isConstant": false,
+                                  "isLValue": true,
+                                  "isPure": false,
+                                  "lValueRequested": true,
+                                  "memberName": "elevation",
+                                  "nodeType": "MemberAccess",
+                                  "referencedDeclaration": 14317,
+                                  "src": "657:21:139",
+                                  "typeDescriptions": {
+                                    "typeIdentifier": "t_uint8",
+                                    "typeString": "uint8"
+                                  }
+                                },
+                                "nodeType": "Assignment",
+                                "operator": "=",
+                                "rightHandSide": {
+                                  "argumentTypes": null,
+                                  "commonType": {
+                                    "typeIdentifier": "t_uint8",
+                                    "typeString": "uint8"
+                                  },
+                                  "id": 14356,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "leftExpression": {
+                                    "argumentTypes": null,
+                                    "commonType": {
+                                      "typeIdentifier": "t_uint8",
+                                      "typeString": "uint8"
+                                    },
+                                    "id": 14354,
+                                    "isConstant": false,
+                                    "isLValue": false,
+                                    "isPure": false,
+                                    "lValueRequested": false,
+                                    "leftExpression": {
+                                      "argumentTypes": null,
+                                      "id": 14352,
+                                      "name": "mapsize",
+                                      "nodeType": "Identifier",
+                                      "overloadedDeclarations": [],
+                                      "referencedDeclaration": 14305,
+                                      "src": "681:7:139",
+                                      "typeDescriptions": {
+                                        "typeIdentifier": "t_uint8",
+                                        "typeString": "uint8"
+                                      }
+                                    },
+                                    "nodeType": "BinaryOperation",
+                                    "operator": "*",
+                                    "rightExpression": {
+                                      "argumentTypes": null,
+                                      "id": 14353,
+                                      "name": "y",
+                                      "nodeType": "Identifier",
+                                      "overloadedDeclarations": [],
+                                      "referencedDeclaration": 14327,
+                                      "src": "689:1:139",
+                                      "typeDescriptions": {
+                                        "typeIdentifier": "t_uint8",
+                                        "typeString": "uint8"
+                                      }
+                                    },
+                                    "src": "681:9:139",
+                                    "typeDescriptions": {
+                                      "typeIdentifier": "t_uint8",
+                                      "typeString": "uint8"
+                                    }
+                                  },
+                                  "nodeType": "BinaryOperation",
+                                  "operator": "+",
+                                  "rightExpression": {
+                                    "argumentTypes": null,
+                                    "id": 14355,
+                                    "name": "x",
+                                    "nodeType": "Identifier",
+                                    "overloadedDeclarations": [],
+                                    "referencedDeclaration": 14337,
+                                    "src": "693:1:139",
+                                    "typeDescriptions": {
+                                      "typeIdentifier": "t_uint8",
+                                      "typeString": "uint8"
+                                    }
+                                  },
+                                  "src": "681:13:139",
+                                  "typeDescriptions": {
+                                    "typeIdentifier": "t_uint8",
+                                    "typeString": "uint8"
+                                  }
+                                },
+                                "src": "657:37:139",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_uint8",
+                                  "typeString": "uint8"
+                                }
+                              },
+                              "id": 14358,
+                              "nodeType": "ExpressionStatement",
+                              "src": "657:37:139"
+                            }
+                          ]
+                        },
+                        "condition": {
+                          "argumentTypes": null,
+                          "commonType": {
+                            "typeIdentifier": "t_uint8",
+                            "typeString": "uint8"
+                          },
+                          "id": 14342,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftExpression": {
+                            "argumentTypes": null,
+                            "id": 14340,
+                            "name": "x",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 14337,
+                            "src": "618:1:139",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint8",
+                              "typeString": "uint8"
+                            }
+                          },
+                          "nodeType": "BinaryOperation",
+                          "operator": "<",
+                          "rightExpression": {
+                            "argumentTypes": null,
+                            "id": 14341,
+                            "name": "mapsize",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 14305,
+                            "src": "622:7:139",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint8",
+                              "typeString": "uint8"
+                            }
+                          },
+                          "src": "618:11:139",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          }
+                        },
+                        "id": 14360,
+                        "initializationExpression": {
+                          "assignments": [
+                            14337
+                          ],
+                          "declarations": [
+                            {
+                              "constant": false,
+                              "id": 14337,
+                              "name": "x",
+                              "nodeType": "VariableDeclaration",
+                              "scope": 14364,
+                              "src": "605:7:139",
+                              "stateVariable": false,
+                              "storageLocation": "default",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_uint8",
+                                "typeString": "uint8"
+                              },
+                              "typeName": {
+                                "id": 14336,
+                                "name": "uint8",
+                                "nodeType": "ElementaryTypeName",
+                                "src": "605:5:139",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_uint8",
+                                  "typeString": "uint8"
+                                }
+                              },
+                              "value": null,
+                              "visibility": "internal"
+                            }
+                          ],
+                          "id": 14339,
+                          "initialValue": {
+                            "argumentTypes": null,
+                            "hexValue": "30",
+                            "id": 14338,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "kind": "number",
+                            "lValueRequested": false,
+                            "nodeType": "Literal",
+                            "src": "615:1:139",
+                            "subdenomination": null,
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_rational_0_by_1",
+                              "typeString": "int_const 0"
+                            },
+                            "value": "0"
+                          },
+                          "nodeType": "VariableDeclarationStatement",
+                          "src": "605:11:139"
+                        },
+                        "loopExpression": {
+                          "expression": {
+                            "argumentTypes": null,
+                            "id": 14344,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "nodeType": "UnaryOperation",
+                            "operator": "++",
+                            "prefix": false,
+                            "src": "631:3:139",
+                            "subExpression": {
+                              "argumentTypes": null,
+                              "id": 14343,
+                              "name": "x",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 14337,
+                              "src": "631:1:139",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_uint8",
+                                "typeString": "uint8"
+                              }
+                            },
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint8",
+                              "typeString": "uint8"
+                            }
+                          },
+                          "id": 14345,
+                          "nodeType": "ExpressionStatement",
+                          "src": "631:3:139"
+                        },
+                        "nodeType": "ForStatement",
+                        "src": "601:155:139"
+                      }
+                    ]
+                  },
+                  "condition": {
+                    "argumentTypes": null,
+                    "commonType": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    },
+                    "id": 14332,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "argumentTypes": null,
+                      "id": 14330,
+                      "name": "y",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 14327,
+                      "src": "567:1:139",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint8",
+                        "typeString": "uint8"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "<",
+                    "rightExpression": {
+                      "argumentTypes": null,
+                      "id": 14331,
+                      "name": "mapsize",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 14305,
+                      "src": "571:7:139",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint8",
+                        "typeString": "uint8"
+                      }
+                    },
+                    "src": "567:11:139",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 14362,
+                  "initializationExpression": {
+                    "assignments": [
+                      14327
+                    ],
+                    "declarations": [
+                      {
+                        "constant": false,
+                        "id": 14327,
+                        "name": "y",
+                        "nodeType": "VariableDeclaration",
+                        "scope": 14364,
+                        "src": "554:7:139",
+                        "stateVariable": false,
+                        "storageLocation": "default",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint8",
+                          "typeString": "uint8"
+                        },
+                        "typeName": {
+                          "id": 14326,
+                          "name": "uint8",
+                          "nodeType": "ElementaryTypeName",
+                          "src": "554:5:139",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint8",
+                            "typeString": "uint8"
+                          }
+                        },
+                        "value": null,
+                        "visibility": "internal"
+                      }
+                    ],
+                    "id": 14329,
+                    "initialValue": {
+                      "argumentTypes": null,
+                      "hexValue": "30",
+                      "id": 14328,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "number",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "564:1:139",
+                      "subdenomination": null,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_rational_0_by_1",
+                        "typeString": "int_const 0"
+                      },
+                      "value": "0"
+                    },
+                    "nodeType": "VariableDeclarationStatement",
+                    "src": "554:11:139"
+                  },
+                  "loopExpression": {
+                    "expression": {
+                      "argumentTypes": null,
+                      "id": 14334,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "nodeType": "UnaryOperation",
+                      "operator": "++",
+                      "prefix": false,
+                      "src": "580:3:139",
+                      "subExpression": {
+                        "argumentTypes": null,
+                        "id": 14333,
+                        "name": "y",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 14327,
+                        "src": "580:1:139",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint8",
+                          "typeString": "uint8"
+                        }
+                      },
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint8",
+                        "typeString": "uint8"
+                      }
+                    },
+                    "id": 14335,
+                    "nodeType": "ExpressionStatement",
+                    "src": "580:3:139"
+                  },
+                  "nodeType": "ForStatement",
+                  "src": "550:217:139"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 14364,
+            "implemented": true,
+            "isConstructor": true,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "StructAndForLoopTester",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 14319,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "502:2:139"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 14320,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "510:0:139"
+            },
+            "scope": 14396,
+            "src": "471:303:139",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 14380,
+              "nodeType": "Block",
+              "src": "853:42:139",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "expression": {
+                      "argumentTypes": null,
+                      "baseExpression": {
+                        "argumentTypes": null,
+                        "baseExpression": {
+                          "argumentTypes": null,
+                          "id": 14373,
+                          "name": "tiles",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 14311,
+                          "src": "867:5:139",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_array$_t_array$_t_struct$_Tile_$14318_storage_$9_storage_$9_storage",
+                            "typeString": "struct StructAndForLoopTester.Tile storage ref[9] storage ref[9] storage ref"
+                          }
+                        },
+                        "id": 14375,
+                        "indexExpression": {
+                          "argumentTypes": null,
+                          "id": 14374,
+                          "name": "x",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 14366,
+                          "src": "873:1:139",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint8",
+                            "typeString": "uint8"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "867:8:139",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_struct$_Tile_$14318_storage_$9_storage",
+                          "typeString": "struct StructAndForLoopTester.Tile storage ref[9] storage ref"
+                        }
+                      },
+                      "id": 14377,
+                      "indexExpression": {
+                        "argumentTypes": null,
+                        "id": 14376,
+                        "name": "y",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 14368,
+                        "src": "876:1:139",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint8",
+                          "typeString": "uint8"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "nodeType": "IndexAccess",
+                      "src": "867:11:139",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_Tile_$14318_storage",
+                        "typeString": "struct StructAndForLoopTester.Tile storage ref"
+                      }
+                    },
+                    "id": 14378,
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "memberName": "elevation",
+                    "nodeType": "MemberAccess",
+                    "referencedDeclaration": 14317,
+                    "src": "867:21:139",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    }
+                  },
+                  "functionReturnParameters": 14372,
+                  "id": 14379,
+                  "nodeType": "Return",
+                  "src": "860:28:139"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 14381,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "getElevation",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 14369,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 14366,
+                  "name": "x",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 14381,
+                  "src": "806:7:139",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  },
+                  "typeName": {
+                    "id": 14365,
+                    "name": "uint8",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "806:5:139",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 14368,
+                  "name": "y",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 14381,
+                  "src": "815:7:139",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  },
+                  "typeName": {
+                    "id": 14367,
+                    "name": "uint8",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "815:5:139",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "805:18:139"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 14372,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 14371,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 14381,
+                  "src": "842:5:139",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  },
+                  "typeName": {
+                    "id": 14370,
+                    "name": "uint8",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "842:5:139",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "841:7:139"
+            },
+            "scope": 14396,
+            "src": "784:111:139",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 14394,
+              "nodeType": "Block",
+              "src": "1011:159:139",
+              "statements": [
+                {
+                  "condition": {
+                    "argumentTypes": null,
+                    "commonType": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    },
+                    "id": 14387,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "argumentTypes": null,
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 14384,
+                        "name": "msg",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 27338,
+                        "src": "1026:3:139",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_magic_message",
+                          "typeString": "msg"
+                        }
+                      },
+                      "id": 14385,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "sender",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "1026:10:139",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "==",
+                    "rightExpression": {
+                      "argumentTypes": null,
+                      "id": 14386,
+                      "name": "creator",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 14302,
+                      "src": "1040:7:139",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "src": "1026:21:139",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "falseBody": null,
+                  "id": 14393,
+                  "nodeType": "IfStatement",
+                  "src": "1022:142:139",
+                  "trueBody": {
+                    "id": 14392,
+                    "nodeType": "Block",
+                    "src": "1057:107:139",
+                    "statements": [
+                      {
+                        "expression": {
+                          "argumentTypes": null,
+                          "arguments": [
+                            {
+                              "argumentTypes": null,
+                              "id": 14389,
+                              "name": "creator",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 14302,
+                              "src": "1079:7:139",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                              }
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                              }
+                            ],
+                            "id": 14388,
+                            "name": "suicide",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 27349,
+                            "src": "1071:7:139",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_function_selfdestruct_nonpayable$_t_address_$returns$__$",
+                              "typeString": "function (address)"
+                            }
+                          },
+                          "id": 14390,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "kind": "functionCall",
+                          "lValueRequested": false,
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "1071:16:139",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_tuple$__$",
+                            "typeString": "tuple()"
+                          }
+                        },
+                        "id": 14391,
+                        "nodeType": "ExpressionStatement",
+                        "src": "1071:16:139"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            "documentation": "********\nStandard kill() function to recover funds *********",
+            "id": 14395,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "kill",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 14382,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1004:2:139"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 14383,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1011:0:139"
+            },
+            "scope": 14396,
+            "src": "991:179:139",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 14397,
+        "src": "242:930:139"
+      }
+    ],
+    "src": "242:930:139"
+  },
+  "legacyAST": {
+    "absolutePath": "/home/liweibo/code/solidity/contracts_library/contracts_library/channel-gravy-token/contracts/fivedogit/solidity-baby-steps/contracts/StructAndForLoopTester.sol",
+    "exportedSymbols": {
+      "StructAndForLoopTester": [
+        14396
+      ]
+    },
+    "id": 14397,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 14396,
+        "linearizedBaseContracts": [
+          14396
+        ],
+        "name": "StructAndForLoopTester",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 14302,
+            "name": "creator",
+            "nodeType": "VariableDeclaration",
+            "scope": 14396,
+            "src": "281:15:139",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address",
+              "typeString": "address"
+            },
+            "typeName": {
+              "id": 14301,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "281:7:139",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 14305,
+            "name": "mapsize",
+            "nodeType": "VariableDeclaration",
+            "scope": 14396,
+            "src": "302:17:139",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint8",
+              "typeString": "uint8"
+            },
+            "typeName": {
+              "id": 14303,
+              "name": "uint8",
+              "nodeType": "ElementaryTypeName",
+              "src": "302:5:139",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint8",
+                "typeString": "uint8"
+              }
+            },
+            "value": {
+              "argumentTypes": null,
+              "hexValue": "39",
+              "id": 14304,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "number",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "318:1:139",
+              "subdenomination": null,
+              "typeDescriptions": {
+                "typeIdentifier": "t_rational_9_by_1",
+                "typeString": "int_const 9"
+              },
+              "value": "9"
+            },
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 14311,
+            "name": "tiles",
+            "nodeType": "VariableDeclaration",
+            "scope": 14396,
+            "src": "325:16:139",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_array$_t_array$_t_struct$_Tile_$14318_storage_$9_storage_$9_storage",
+              "typeString": "struct StructAndForLoopTester.Tile[9][9]"
+            },
+            "typeName": {
+              "baseType": {
+                "baseType": {
+                  "contractScope": null,
+                  "id": 14306,
+                  "name": "Tile",
+                  "nodeType": "UserDefinedTypeName",
+                  "referencedDeclaration": 14318,
+                  "src": "325:4:139",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_Tile_$14318_storage_ptr",
+                    "typeString": "struct StructAndForLoopTester.Tile"
+                  }
+                },
+                "id": 14308,
+                "length": {
+                  "argumentTypes": null,
+                  "hexValue": "39",
+                  "id": 14307,
+                  "isConstant": false,
+                  "isLValue": false,
+                  "isPure": false,
+                  "kind": "number",
+                  "lValueRequested": false,
+                  "nodeType": "Literal",
+                  "src": "330:1:139",
+                  "subdenomination": null,
+                  "typeDescriptions": {
+                    "typeIdentifier": null,
+                    "typeString": null
+                  },
+                  "value": "9"
+                },
+                "nodeType": "ArrayTypeName",
+                "src": "325:7:139",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_struct$_Tile_$14318_storage_$9_storage_ptr",
+                  "typeString": "struct StructAndForLoopTester.Tile[9]"
+                }
+              },
+              "id": 14310,
+              "length": {
+                "argumentTypes": null,
+                "hexValue": "39",
+                "id": 14309,
+                "isConstant": false,
+                "isLValue": false,
+                "isPure": false,
+                "kind": "number",
+                "lValueRequested": false,
+                "nodeType": "Literal",
+                "src": "333:1:139",
+                "subdenomination": null,
+                "typeDescriptions": {
+                  "typeIdentifier": null,
+                  "typeString": null
+                },
+                "value": "9"
+              },
+              "nodeType": "ArrayTypeName",
+              "src": "325:10:139",
+              "typeDescriptions": {
+                "typeIdentifier": "t_array$_t_array$_t_struct$_Tile_$14318_storage_$9_storage_$9_storage_ptr",
+                "typeString": "struct StructAndForLoopTester.Tile[9][9]"
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "canonicalName": "StructAndForLoopTester.Tile",
+            "id": 14318,
+            "members": [
+              {
+                "constant": false,
+                "id": 14313,
+                "name": "owner",
+                "nodeType": "VariableDeclaration",
+                "scope": 14318,
+                "src": "380:13:139",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 14312,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "380:7:139",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 14315,
+                "name": "descriptorContract",
+                "nodeType": "VariableDeclaration",
+                "scope": 14318,
+                "src": "403:26:139",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 14314,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "403:7:139",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 14317,
+                "name": "elevation",
+                "nodeType": "VariableDeclaration",
+                "scope": 14318,
+                "src": "439:15:139",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint8",
+                  "typeString": "uint8"
+                },
+                "typeName": {
+                  "id": 14316,
+                  "name": "uint8",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "439:5:139",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "Tile",
+            "nodeType": "StructDefinition",
+            "scope": 14396,
+            "src": "353:108:139",
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 14363,
+              "nodeType": "Block",
+              "src": "510:264:139",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 14324,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 14321,
+                      "name": "creator",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 14302,
+                      "src": "520:7:139",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 14322,
+                        "name": "msg",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 27338,
+                        "src": "530:3:139",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_magic_message",
+                          "typeString": "msg"
+                        }
+                      },
+                      "id": 14323,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "sender",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "530:10:139",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "src": "520:20:139",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "id": 14325,
+                  "nodeType": "ExpressionStatement",
+                  "src": "520:20:139"
+                },
+                {
+                  "body": {
+                    "id": 14361,
+                    "nodeType": "Block",
+                    "src": "590:177:139",
+                    "statements": [
+                      {
+                        "body": {
+                          "id": 14359,
+                          "nodeType": "Block",
+                          "src": "645:111:139",
+                          "statements": [
+                            {
+                              "expression": {
+                                "argumentTypes": null,
+                                "id": 14357,
+                                "isConstant": false,
+                                "isLValue": false,
+                                "isPure": false,
+                                "lValueRequested": false,
+                                "leftHandSide": {
+                                  "argumentTypes": null,
+                                  "expression": {
+                                    "argumentTypes": null,
+                                    "baseExpression": {
+                                      "argumentTypes": null,
+                                      "baseExpression": {
+                                        "argumentTypes": null,
+                                        "id": 14346,
+                                        "name": "tiles",
+                                        "nodeType": "Identifier",
+                                        "overloadedDeclarations": [],
+                                        "referencedDeclaration": 14311,
+                                        "src": "657:5:139",
+                                        "typeDescriptions": {
+                                          "typeIdentifier": "t_array$_t_array$_t_struct$_Tile_$14318_storage_$9_storage_$9_storage",
+                                          "typeString": "struct StructAndForLoopTester.Tile storage ref[9] storage ref[9] storage ref"
+                                        }
+                                      },
+                                      "id": 14349,
+                                      "indexExpression": {
+                                        "argumentTypes": null,
+                                        "id": 14347,
+                                        "name": "x",
+                                        "nodeType": "Identifier",
+                                        "overloadedDeclarations": [],
+                                        "referencedDeclaration": 14337,
+                                        "src": "663:1:139",
+                                        "typeDescriptions": {
+                                          "typeIdentifier": "t_uint8",
+                                          "typeString": "uint8"
+                                        }
+                                      },
+                                      "isConstant": false,
+                                      "isLValue": true,
+                                      "isPure": false,
+                                      "lValueRequested": false,
+                                      "nodeType": "IndexAccess",
+                                      "src": "657:8:139",
+                                      "typeDescriptions": {
+                                        "typeIdentifier": "t_array$_t_struct$_Tile_$14318_storage_$9_storage",
+                                        "typeString": "struct StructAndForLoopTester.Tile storage ref[9] storage ref"
+                                      }
+                                    },
+                                    "id": 14350,
+                                    "indexExpression": {
+                                      "argumentTypes": null,
+                                      "id": 14348,
+                                      "name": "y",
+                                      "nodeType": "Identifier",
+                                      "overloadedDeclarations": [],
+                                      "referencedDeclaration": 14327,
+                                      "src": "666:1:139",
+                                      "typeDescriptions": {
+                                        "typeIdentifier": "t_uint8",
+                                        "typeString": "uint8"
+                                      }
+                                    },
+                                    "isConstant": false,
+                                    "isLValue": true,
+                                    "isPure": false,
+                                    "lValueRequested": false,
+                                    "nodeType": "IndexAccess",
+                                    "src": "657:11:139",
+                                    "typeDescriptions": {
+                                      "typeIdentifier": "t_struct$_Tile_$14318_storage",
+                                      "typeString": "struct StructAndForLoopTester.Tile storage ref"
+                                    }
+                                  },
+                                  "id": 14351,
+                                  "isConstant": false,
+                                  "isLValue": true,
+                                  "isPure": false,
+                                  "lValueRequested": true,
+                                  "memberName": "elevation",
+                                  "nodeType": "MemberAccess",
+                                  "referencedDeclaration": 14317,
+                                  "src": "657:21:139",
+                                  "typeDescriptions": {
+                                    "typeIdentifier": "t_uint8",
+                                    "typeString": "uint8"
+                                  }
+                                },
+                                "nodeType": "Assignment",
+                                "operator": "=",
+                                "rightHandSide": {
+                                  "argumentTypes": null,
+                                  "commonType": {
+                                    "typeIdentifier": "t_uint8",
+                                    "typeString": "uint8"
+                                  },
+                                  "id": 14356,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "leftExpression": {
+                                    "argumentTypes": null,
+                                    "commonType": {
+                                      "typeIdentifier": "t_uint8",
+                                      "typeString": "uint8"
+                                    },
+                                    "id": 14354,
+                                    "isConstant": false,
+                                    "isLValue": false,
+                                    "isPure": false,
+                                    "lValueRequested": false,
+                                    "leftExpression": {
+                                      "argumentTypes": null,
+                                      "id": 14352,
+                                      "name": "mapsize",
+                                      "nodeType": "Identifier",
+                                      "overloadedDeclarations": [],
+                                      "referencedDeclaration": 14305,
+                                      "src": "681:7:139",
+                                      "typeDescriptions": {
+                                        "typeIdentifier": "t_uint8",
+                                        "typeString": "uint8"
+                                      }
+                                    },
+                                    "nodeType": "BinaryOperation",
+                                    "operator": "*",
+                                    "rightExpression": {
+                                      "argumentTypes": null,
+                                      "id": 14353,
+                                      "name": "y",
+                                      "nodeType": "Identifier",
+                                      "overloadedDeclarations": [],
+                                      "referencedDeclaration": 14327,
+                                      "src": "689:1:139",
+                                      "typeDescriptions": {
+                                        "typeIdentifier": "t_uint8",
+                                        "typeString": "uint8"
+                                      }
+                                    },
+                                    "src": "681:9:139",
+                                    "typeDescriptions": {
+                                      "typeIdentifier": "t_uint8",
+                                      "typeString": "uint8"
+                                    }
+                                  },
+                                  "nodeType": "BinaryOperation",
+                                  "operator": "+",
+                                  "rightExpression": {
+                                    "argumentTypes": null,
+                                    "id": 14355,
+                                    "name": "x",
+                                    "nodeType": "Identifier",
+                                    "overloadedDeclarations": [],
+                                    "referencedDeclaration": 14337,
+                                    "src": "693:1:139",
+                                    "typeDescriptions": {
+                                      "typeIdentifier": "t_uint8",
+                                      "typeString": "uint8"
+                                    }
+                                  },
+                                  "src": "681:13:139",
+                                  "typeDescriptions": {
+                                    "typeIdentifier": "t_uint8",
+                                    "typeString": "uint8"
+                                  }
+                                },
+                                "src": "657:37:139",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_uint8",
+                                  "typeString": "uint8"
+                                }
+                              },
+                              "id": 14358,
+                              "nodeType": "ExpressionStatement",
+                              "src": "657:37:139"
+                            }
+                          ]
+                        },
+                        "condition": {
+                          "argumentTypes": null,
+                          "commonType": {
+                            "typeIdentifier": "t_uint8",
+                            "typeString": "uint8"
+                          },
+                          "id": 14342,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftExpression": {
+                            "argumentTypes": null,
+                            "id": 14340,
+                            "name": "x",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 14337,
+                            "src": "618:1:139",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint8",
+                              "typeString": "uint8"
+                            }
+                          },
+                          "nodeType": "BinaryOperation",
+                          "operator": "<",
+                          "rightExpression": {
+                            "argumentTypes": null,
+                            "id": 14341,
+                            "name": "mapsize",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 14305,
+                            "src": "622:7:139",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint8",
+                              "typeString": "uint8"
+                            }
+                          },
+                          "src": "618:11:139",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          }
+                        },
+                        "id": 14360,
+                        "initializationExpression": {
+                          "assignments": [
+                            14337
+                          ],
+                          "declarations": [
+                            {
+                              "constant": false,
+                              "id": 14337,
+                              "name": "x",
+                              "nodeType": "VariableDeclaration",
+                              "scope": 14364,
+                              "src": "605:7:139",
+                              "stateVariable": false,
+                              "storageLocation": "default",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_uint8",
+                                "typeString": "uint8"
+                              },
+                              "typeName": {
+                                "id": 14336,
+                                "name": "uint8",
+                                "nodeType": "ElementaryTypeName",
+                                "src": "605:5:139",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_uint8",
+                                  "typeString": "uint8"
+                                }
+                              },
+                              "value": null,
+                              "visibility": "internal"
+                            }
+                          ],
+                          "id": 14339,
+                          "initialValue": {
+                            "argumentTypes": null,
+                            "hexValue": "30",
+                            "id": 14338,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "kind": "number",
+                            "lValueRequested": false,
+                            "nodeType": "Literal",
+                            "src": "615:1:139",
+                            "subdenomination": null,
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_rational_0_by_1",
+                              "typeString": "int_const 0"
+                            },
+                            "value": "0"
+                          },
+                          "nodeType": "VariableDeclarationStatement",
+                          "src": "605:11:139"
+                        },
+                        "loopExpression": {
+                          "expression": {
+                            "argumentTypes": null,
+                            "id": 14344,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "nodeType": "UnaryOperation",
+                            "operator": "++",
+                            "prefix": false,
+                            "src": "631:3:139",
+                            "subExpression": {
+                              "argumentTypes": null,
+                              "id": 14343,
+                              "name": "x",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 14337,
+                              "src": "631:1:139",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_uint8",
+                                "typeString": "uint8"
+                              }
+                            },
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint8",
+                              "typeString": "uint8"
+                            }
+                          },
+                          "id": 14345,
+                          "nodeType": "ExpressionStatement",
+                          "src": "631:3:139"
+                        },
+                        "nodeType": "ForStatement",
+                        "src": "601:155:139"
+                      }
+                    ]
+                  },
+                  "condition": {
+                    "argumentTypes": null,
+                    "commonType": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    },
+                    "id": 14332,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "argumentTypes": null,
+                      "id": 14330,
+                      "name": "y",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 14327,
+                      "src": "567:1:139",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint8",
+                        "typeString": "uint8"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "<",
+                    "rightExpression": {
+                      "argumentTypes": null,
+                      "id": 14331,
+                      "name": "mapsize",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 14305,
+                      "src": "571:7:139",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint8",
+                        "typeString": "uint8"
+                      }
+                    },
+                    "src": "567:11:139",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 14362,
+                  "initializationExpression": {
+                    "assignments": [
+                      14327
+                    ],
+                    "declarations": [
+                      {
+                        "constant": false,
+                        "id": 14327,
+                        "name": "y",
+                        "nodeType": "VariableDeclaration",
+                        "scope": 14364,
+                        "src": "554:7:139",
+                        "stateVariable": false,
+                        "storageLocation": "default",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint8",
+                          "typeString": "uint8"
+                        },
+                        "typeName": {
+                          "id": 14326,
+                          "name": "uint8",
+                          "nodeType": "ElementaryTypeName",
+                          "src": "554:5:139",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint8",
+                            "typeString": "uint8"
+                          }
+                        },
+                        "value": null,
+                        "visibility": "internal"
+                      }
+                    ],
+                    "id": 14329,
+                    "initialValue": {
+                      "argumentTypes": null,
+                      "hexValue": "30",
+                      "id": 14328,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "number",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "564:1:139",
+                      "subdenomination": null,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_rational_0_by_1",
+                        "typeString": "int_const 0"
+                      },
+                      "value": "0"
+                    },
+                    "nodeType": "VariableDeclarationStatement",
+                    "src": "554:11:139"
+                  },
+                  "loopExpression": {
+                    "expression": {
+                      "argumentTypes": null,
+                      "id": 14334,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "nodeType": "UnaryOperation",
+                      "operator": "++",
+                      "prefix": false,
+                      "src": "580:3:139",
+                      "subExpression": {
+                        "argumentTypes": null,
+                        "id": 14333,
+                        "name": "y",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 14327,
+                        "src": "580:1:139",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint8",
+                          "typeString": "uint8"
+                        }
+                      },
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint8",
+                        "typeString": "uint8"
+                      }
+                    },
+                    "id": 14335,
+                    "nodeType": "ExpressionStatement",
+                    "src": "580:3:139"
+                  },
+                  "nodeType": "ForStatement",
+                  "src": "550:217:139"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 14364,
+            "implemented": true,
+            "isConstructor": true,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "StructAndForLoopTester",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 14319,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "502:2:139"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 14320,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "510:0:139"
+            },
+            "scope": 14396,
+            "src": "471:303:139",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 14380,
+              "nodeType": "Block",
+              "src": "853:42:139",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "expression": {
+                      "argumentTypes": null,
+                      "baseExpression": {
+                        "argumentTypes": null,
+                        "baseExpression": {
+                          "argumentTypes": null,
+                          "id": 14373,
+                          "name": "tiles",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 14311,
+                          "src": "867:5:139",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_array$_t_array$_t_struct$_Tile_$14318_storage_$9_storage_$9_storage",
+                            "typeString": "struct StructAndForLoopTester.Tile storage ref[9] storage ref[9] storage ref"
+                          }
+                        },
+                        "id": 14375,
+                        "indexExpression": {
+                          "argumentTypes": null,
+                          "id": 14374,
+                          "name": "x",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 14366,
+                          "src": "873:1:139",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint8",
+                            "typeString": "uint8"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "867:8:139",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_struct$_Tile_$14318_storage_$9_storage",
+                          "typeString": "struct StructAndForLoopTester.Tile storage ref[9] storage ref"
+                        }
+                      },
+                      "id": 14377,
+                      "indexExpression": {
+                        "argumentTypes": null,
+                        "id": 14376,
+                        "name": "y",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 14368,
+                        "src": "876:1:139",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint8",
+                          "typeString": "uint8"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "nodeType": "IndexAccess",
+                      "src": "867:11:139",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_Tile_$14318_storage",
+                        "typeString": "struct StructAndForLoopTester.Tile storage ref"
+                      }
+                    },
+                    "id": 14378,
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "memberName": "elevation",
+                    "nodeType": "MemberAccess",
+                    "referencedDeclaration": 14317,
+                    "src": "867:21:139",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    }
+                  },
+                  "functionReturnParameters": 14372,
+                  "id": 14379,
+                  "nodeType": "Return",
+                  "src": "860:28:139"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 14381,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "getElevation",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 14369,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 14366,
+                  "name": "x",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 14381,
+                  "src": "806:7:139",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  },
+                  "typeName": {
+                    "id": 14365,
+                    "name": "uint8",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "806:5:139",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 14368,
+                  "name": "y",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 14381,
+                  "src": "815:7:139",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  },
+                  "typeName": {
+                    "id": 14367,
+                    "name": "uint8",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "815:5:139",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "805:18:139"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 14372,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 14371,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 14381,
+                  "src": "842:5:139",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  },
+                  "typeName": {
+                    "id": 14370,
+                    "name": "uint8",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "842:5:139",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "841:7:139"
+            },
+            "scope": 14396,
+            "src": "784:111:139",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 14394,
+              "nodeType": "Block",
+              "src": "1011:159:139",
+              "statements": [
+                {
+                  "condition": {
+                    "argumentTypes": null,
+                    "commonType": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    },
+                    "id": 14387,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "argumentTypes": null,
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 14384,
+                        "name": "msg",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 27338,
+                        "src": "1026:3:139",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_magic_message",
+                          "typeString": "msg"
+                        }
+                      },
+                      "id": 14385,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "sender",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "1026:10:139",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "==",
+                    "rightExpression": {
+                      "argumentTypes": null,
+                      "id": 14386,
+                      "name": "creator",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 14302,
+                      "src": "1040:7:139",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "src": "1026:21:139",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "falseBody": null,
+                  "id": 14393,
+                  "nodeType": "IfStatement",
+                  "src": "1022:142:139",
+                  "trueBody": {
+                    "id": 14392,
+                    "nodeType": "Block",
+                    "src": "1057:107:139",
+                    "statements": [
+                      {
+                        "expression": {
+                          "argumentTypes": null,
+                          "arguments": [
+                            {
+                              "argumentTypes": null,
+                              "id": 14389,
+                              "name": "creator",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 14302,
+                              "src": "1079:7:139",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                              }
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                              }
+                            ],
+                            "id": 14388,
+                            "name": "suicide",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 27349,
+                            "src": "1071:7:139",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_function_selfdestruct_nonpayable$_t_address_$returns$__$",
+                              "typeString": "function (address)"
+                            }
+                          },
+                          "id": 14390,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "kind": "functionCall",
+                          "lValueRequested": false,
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "1071:16:139",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_tuple$__$",
+                            "typeString": "tuple()"
+                          }
+                        },
+                        "id": 14391,
+                        "nodeType": "ExpressionStatement",
+                        "src": "1071:16:139"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            "documentation": "********\nStandard kill() function to recover funds *********",
+            "id": 14395,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "kill",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 14382,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1004:2:139"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 14383,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1011:0:139"
+            },
+            "scope": 14396,
+            "src": "991:179:139",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 14397,
+        "src": "242:930:139"
+      }
+    ],
+    "src": "242:930:139"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.24+commit.e67f0147.Emscripten.clang"
+  },
+  "networks": {
+    "5777": {
+      "events": {},
+      "links": {},
+      "address": "0x22a29548820f3e5312fc700f591f2116a0231407",
+      "transactionHash": "0x358b9d27ed095748b8346b2ce714b6b419dbdc1dab90eaedcd907634fc65b579"
+    }
+  },
+  "schemaVersion": "2.0.1",
+  "updatedAt": "2018-08-14T06:52:45.250Z"
+}
