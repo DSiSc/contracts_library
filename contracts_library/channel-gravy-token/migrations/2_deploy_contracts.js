@@ -66,10 +66,11 @@ var fivedogitSolidityBabyStepsContracts35Coinflipper = artifacts.require("./five
 var fivedogitSolidityBabyStepsContracts58indexOf = artifacts.require("./fivedogit/solidity-baby-steps/contracts/IndexOf.sol");
 var fivedogitSolidityBabyStepsContracts05greeter = artifacts.require("./fivedogit/solidity-baby-steps/contracts/Greeter.sol");
 
-
 var vcinlyTheNineBillionNamesOfGodnine = artifacts.require("./vcinly/TheNineBillionNamesOfGod/Nine.sol");
 
 var arachnidSolidityStringutilsSrcStringsTest = artifacts.require("./Arachnid/solidity-stringutils/src/StringsTest.sol");
+
+var ShubhamTatvamasiLoopDefenderLoopDefender = artifacts.require("./ShubhamTatvamasi/LoopDefender/LoopDefender.sol");
 
 const sigUtil = require("eth-sig-util")
 
@@ -160,4 +161,6 @@ module.exports = function(deployer) {
   deployer.deploy(fivedogitSolidityBabyStepsContracts05greeter, "Hello World!");
 
   deployer.deploy(arachnidSolidityStringutilsSrcStringsTest);
+
+  deployer.deploy(ShubhamTatvamasiLoopDefenderLoopDefender);
 };
