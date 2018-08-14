@@ -44,6 +44,29 @@ var willitscaleLearningSolidityTutorial16AlarmTrigger = artifacts.require("./wil
 var willitscaleLearningSolidityTutorial06DataTypes = artifacts.require("./willitscale/learning-solidity/tutorial-06/DataTypes.sol");
 var willitscaleLearningSolidityTutorial24MultiSigWallet = artifacts.require("./willitscale/learning-solidity/tutorial-24/MultiSigWallet.sol");
 
+var fivedogitSolidityBabyStepsContracts48MsgValueTobytes20 = artifacts.require("./fivedogit/solidity-baby-steps/contracts/MsgValueToBytes20.sol");
+var fivedogitSolidityBabyStepsContracts59byteExtractor = artifacts.require("./fivedogit/solidity-baby-steps/contracts/ByteExtractor.sol");
+var fivedogitSolidityBabyStepsContracts30Endowmentretriever = artifacts.require("./fivedogit/solidity-baby-steps/contracts/EndowmentRetriever.sol");
+var fivedogitSolidityBabyStepsContracts10CreatorBalancechecker = artifacts.require("./fivedogit/solidity-baby-steps/contracts/CreatorBalanceChecker.sol");
+var fivedogitSolidityBabyStepsContracts40MultipleConstructortest = artifacts.require("./fivedogit/solidity-baby-steps/contracts/MultipleConstructorTest.sol");
+var fivedogitSolidityBabyStepsContracts08basiciterator = artifacts.require("./fivedogit/solidity-baby-steps/contracts/BasicIterator.sol");
+var fivedogitSolidityBabyStepsContracts65StructAndForLooptester = artifacts.require("./fivedogit/solidity-baby-steps/contracts/StructAndForLoopTester.sol");
+var fivedogitSolidityBabyStepsContracts20Valueincrementer = artifacts.require("./fivedogit/solidity-baby-steps/contracts/ValueIncrementer.sol");
+var fivedogitSolidityBabyStepsContracts47Bytes32passer = artifacts.require("./fivedogit/solidity-baby-steps/contracts/Bytes32Passer.sol");
+var fivedogitSolidityBabyStepsContracts21Valueincrementer2 = artifacts.require("./fivedogit/solidity-baby-steps/contracts/ValueIncrementer2.sol");
+var fivedogitSolidityBabyStepsContracts15BasicInfogetter = artifacts.require("./fivedogit/solidity-baby-steps/contracts/BasicInfoGetter.sol");
+var fivedogitSolidityBabyStepsContracts60ArrayReceiverAndreturner = artifacts.require("./fivedogit/solidity-baby-steps/contracts/ArrayReceiverAndReturner.sol");
+var fivedogitSolidityBabyStepsContracts22Valueincrementer3 = artifacts.require("./fivedogit/solidity-baby-steps/contracts/ValueIncrementer3.sol");
+var fivedogitSolidityBabyStepsContracts552Darray = artifacts.require("./fivedogit/solidity-baby-steps/contracts/TwoDArray.sol");
+var fivedogitSolidityBabyStepsContracts25Msgexaminer = artifacts.require("./fivedogit/solidity-baby-steps/contracts/MsgExaminer.sol");
+var fivedogitSolidityBabyStepsContracts47Arraypasser = artifacts.require("./fivedogit/solidity-baby-steps/contracts/ArrayPasser.sol");
+var fivedogitSolidityBabyStepsContracts50replicatorA = artifacts.require("./fivedogit/solidity-baby-steps/contracts/ReplicatorA.sol");
+var fivedogitSolidityBabyStepsContracts50replicatorB = artifacts.require("./fivedogit/solidity-baby-steps/contracts/ReplicatorB.sol");
+var fivedogitSolidityBabyStepsContracts35Coinflipper = artifacts.require("./fivedogit/solidity-baby-steps/contracts/CoinFlipper.sol");
+var fivedogitSolidityBabyStepsContracts58indexOf = artifacts.require("./fivedogit/solidity-baby-steps/contracts/IndexOf.sol");
+var fivedogitSolidityBabyStepsContracts05greeter = artifacts.require("./fivedogit/solidity-baby-steps/contracts/Greeter.sol");
+
+
 var vcinlyTheNineBillionNamesOfGodnine = artifacts.require("./vcinly/TheNineBillionNamesOfGod/Nine.sol");
 
 const sigUtil = require("eth-sig-util")
@@ -111,4 +134,26 @@ module.exports = function(deployer) {
   deployer.deploy(willitscaleLearningSolidityTutorial24MultiSigWallet);
 
   deployer.deploy(vcinlyTheNineBillionNamesOfGodnine);
+
+  deployer.deploy(fivedogitSolidityBabyStepsContracts48MsgValueTobytes20);
+  deployer.deploy(fivedogitSolidityBabyStepsContracts59byteExtractor);
+  deployer.deploy(fivedogitSolidityBabyStepsContracts30Endowmentretriever);
+  deployer.deploy(fivedogitSolidityBabyStepsContracts10CreatorBalancechecker);
+  deployer.deploy(fivedogitSolidityBabyStepsContracts40MultipleConstructortest);
+  deployer.deploy(fivedogitSolidityBabyStepsContracts08basiciterator);
+  deployer.deploy(fivedogitSolidityBabyStepsContracts65StructAndForLooptester);
+  deployer.deploy(fivedogitSolidityBabyStepsContracts20Valueincrementer);
+  deployer.deploy(fivedogitSolidityBabyStepsContracts47Bytes32passer);
+  deployer.deploy(fivedogitSolidityBabyStepsContracts21Valueincrementer2);
+  deployer.deploy(fivedogitSolidityBabyStepsContracts15BasicInfogetter);
+  deployer.deploy(fivedogitSolidityBabyStepsContracts60ArrayReceiverAndreturner);
+  deployer.deploy(fivedogitSolidityBabyStepsContracts22Valueincrementer3);
+  deployer.deploy(fivedogitSolidityBabyStepsContracts552Darray);
+  deployer.deploy(fivedogitSolidityBabyStepsContracts25Msgexaminer);
+  deployer.deploy(fivedogitSolidityBabyStepsContracts47Arraypasser, [1, 2, 3, 4, 5, 6, 7, 8, 9]);
+  deployer.deploy(fivedogitSolidityBabyStepsContracts50replicatorA);
+  deployer.deploy(fivedogitSolidityBabyStepsContracts50replicatorB);
+  deployer.deploy(fivedogitSolidityBabyStepsContracts35Coinflipper);
+  deployer.deploy(fivedogitSolidityBabyStepsContracts58indexOf);
+  deployer.deploy(fivedogitSolidityBabyStepsContracts05greeter, "Hello World!");
 };
