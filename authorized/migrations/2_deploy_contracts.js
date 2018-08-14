@@ -87,13 +87,37 @@ var ram1991SoliditySmartContractsBasic = artifacts.require("./ram1991/Solidity-S
 var jdowning100CryptoZombiesZombieFeeding = artifacts.require("./jdowning100/CryptoZombies/ZombieFeeding.sol");
 var jdowning100CryptoZombiesZombieFactory = artifacts.require("./jdowning100/CryptoZombies/ZombieFactory.sol");
 
+var fravollSolidityPatternsProxyDelegateDelegate = artifacts.require("./fravoll/solidity-patterns/ProxyDelegate/Delegate.sol");
+var fravollSolidityPatternsProxyDelegateCaller = artifacts.require("./fravoll/solidity-patterns/ProxyDelegate/Caller.sol");
+var fravollSolidityPatternsProxyDelegateProxy = artifacts.require("./fravoll/solidity-patterns/ProxyDelegate/Proxy.sol");
+var fravollSolidityPatternsProxyDelegateProxyDelegate = artifacts.require("./fravoll/solidity-patterns/ProxyDelegate/ProxyDelegate.sol");
+var fravollSolidityPatternsPullOverPushPullOverPush = artifacts.require("./fravoll/solidity-patterns/PullOverPush/PullOverPush.sol");
+var fravollSolidityPatternsPullOverPushBadPushExample = artifacts.require("./fravoll/solidity-patterns/PullOverPush/BadPushExample.sol");
+var fravollSolidityPatternsSecureEtherTransferSecureEtherTransfer = artifacts.require("./fravoll/solidity-patterns/SecureEtherTransfer/EtherSender.sol");
+var fravollSolidityPatternsStringEqualityComparisonStringEqualityComparison = artifacts.require("./fravoll/solidity-patterns/StringEqualityComparison/StringEqualityComparison.sol");
+var fravollSolidityPatternsStringEqualityComparisonStringEqualityComparisonGasExample = artifacts.require("./fravoll/solidity-patterns/StringEqualityComparison/StringEqualityComparisonGasExample.sol");
+var fravollSolidityPatternsAccessRestrictionAccessRestriction = artifacts.require("./fravoll/solidity-patterns/AccessRestriction/AccessRestriction.sol");
+var fravollSolidityPatternsGuardCheckGuardCheck = artifacts.require("./fravoll/solidity-patterns/GuardCheck/GuardCheck.sol");
+var fravollSolidityPatternsRandomnessRandomness = artifacts.require("./fravoll/solidity-patterns/Randomness/Randomness.sol");
+var fravollSolidityPatternsEternalStorageEternalStorage = artifacts.require("./fravoll/solidity-patterns/EternalStorage/EternalStorage.sol");
+var fravollSolidityPatternsEmergencyStopEmergencyStop = artifacts.require("./fravoll/solidity-patterns/EmergencyStop/EmergencyStop.sol");
+var fravollSolidityPatternsChecksEffectsInteractionChecksEffectsInteractions = artifacts.require("./fravoll/solidity-patterns/ChecksEffectsInteraction/ChecksEffectsInteractions.sol");
+var fravollSolidityPatternsTightVariablePackingTightVariablePacking = artifacts.require("./fravoll/solidity-patterns/TightVariablePacking/StructPackingExample.sol");
+var fravollSolidityPatternsTightVariablePackingCheapStructPackingExample = artifacts.require("./fravoll/solidity-patterns/TightVariablePacking/CheapStructPackingExample.sol");
+var fravollSolidityPatternsTightVariablePackingExpensiveStructPackingExample = artifacts.require("./fravoll/solidity-patterns/TightVariablePacking/ExpensiveStructPackingExample.sol");
+var fravollSolidityPatternsOracleoracle = artifacts.require("./fravoll/solidity-patterns/Oracle/Oracle.sol");
+var fravollSolidityPatternsStateMachineStateMachine = artifacts.require("./fravoll/solidity-patterns/StateMachine/StateMachine.sol");
+var fravollSolidityPatternsMemoryArrayBuildingMemoryArrayBuildingCheap = artifacts.require("./fravoll/solidity-patterns/MemoryArrayBuilding/MemoryArrayBuildingCheap.sol");
+var fravollSolidityPatternsMemoryArrayBuildingMemoryArrayBuildingExpensive = artifacts.require("./fravoll/solidity-patterns/MemoryArrayBuilding/MemoryArrayBuildingExpensive.sol");
+var fravollSolidityPatternsMemoryArrayBuildingMemoryArrayBuilding = artifacts.require("./fravoll/solidity-patterns/MemoryArrayBuilding/MemoryArrayBuilding.sol");
+
 const sigUtil = require("eth-sig-util")
 
-var alice_vote_hash = sigUtil.typedSignatureHash([{ type: 'string', name: 'Message', value: "Vote for Alice"}])
-var bob_vote_hash = sigUtil.typedSignatureHash([{ type: 'string', name: 'Message', value: "Vote for Bob"}])
-var carol_vote_hash = sigUtil.typedSignatureHash([{ type: 'string', name: 'Message', value: "Vote for Carol"}])
+var alice_vote_hash = sigUtil.typedSignatureHash([{ type: 'string', name: 'Message', value: "Vote for Alice" }])
+var bob_vote_hash = sigUtil.typedSignatureHash([{ type: 'string', name: 'Message', value: "Vote for Bob" }])
+var carol_vote_hash = sigUtil.typedSignatureHash([{ type: 'string', name: 'Message', value: "Vote for Carol" }])
 
-module.exports = function(deployer) {
+module.exports = function (deployer) {
   deployer.deploy(maheshmurthyEthereumVotingDappECRecovery);
   deployer.link(maheshmurthyEthereumVotingDappECRecovery, maheshmurthyEthereumVotingDappVoting);
   deployer.deploy(maheshmurthyEthereumVotingDappVoting, ['Alice', 'Bob', 'Carol'], [alice_vote_hash, bob_vote_hash, carol_vote_hash]);
@@ -107,15 +131,15 @@ module.exports = function(deployer) {
   deployer.link(willitscaleLearningSolidityTutorial22SafeMath, willitscaleLearningSolidityTutorial22MyToken);
   deployer.deploy(willitscaleLearningSolidityTutorial22Addresses);
   deployer.link(willitscaleLearningSolidityTutorial22Addresses, willitscaleLearningSolidityTutorial22MyToken);
-  deployer.deploy(willitscaleLearningSolidityTutorial22MyToken).then(function(){
+  deployer.deploy(willitscaleLearningSolidityTutorial22MyToken).then(function () {
     return deployer.deploy(
       willitscaleLearningSolidityTutorial22Crowdsale,
       willitscaleLearningSolidityTutorial22MyToken.address,
       web3.eth.blockNumber,
-      web3.eth.blockNumber+1000,
+      web3.eth.blockNumber + 1000,
       web3.toWei(1, 'ether'),
       1
-    ).then(function(){});
+    ).then(function () { });
   });
 
   deployer.deploy(willitscaleLearningSolidityTutorial25MultiSigWallet);
@@ -193,4 +217,31 @@ module.exports = function(deployer) {
 
   deployer.deploy(jdowning100CryptoZombiesZombieFeeding);
   deployer.deploy(jdowning100CryptoZombiesZombieFactory);
+
+  deployer.deploy(fravollSolidityPatternsProxyDelegateDelegate).then(function () {
+    return deployer.deploy(fravollSolidityPatternsProxyDelegateProxy, fravollSolidityPatternsProxyDelegateDelegate.address);
+  }).then(function () {
+    return deployer.deploy(fravollSolidityPatternsProxyDelegateCaller, fravollSolidityPatternsProxyDelegateProxy.address);
+  });
+
+  deployer.deploy(fravollSolidityPatternsProxyDelegateProxyDelegate);
+  deployer.deploy(fravollSolidityPatternsPullOverPushPullOverPush);
+  deployer.deploy(fravollSolidityPatternsPullOverPushBadPushExample);
+  deployer.deploy(fravollSolidityPatternsSecureEtherTransferSecureEtherTransfer);
+  deployer.deploy(fravollSolidityPatternsStringEqualityComparisonStringEqualityComparison);
+  deployer.deploy(fravollSolidityPatternsStringEqualityComparisonStringEqualityComparisonGasExample);
+  deployer.deploy(fravollSolidityPatternsAccessRestrictionAccessRestriction);
+  deployer.deploy(fravollSolidityPatternsGuardCheckGuardCheck);
+  deployer.deploy(fravollSolidityPatternsRandomnessRandomness);
+  deployer.deploy(fravollSolidityPatternsEternalStorageEternalStorage);
+  deployer.deploy(fravollSolidityPatternsEmergencyStopEmergencyStop);
+  deployer.deploy(fravollSolidityPatternsChecksEffectsInteractionChecksEffectsInteractions);
+  deployer.deploy(fravollSolidityPatternsTightVariablePackingTightVariablePacking);
+  deployer.deploy(fravollSolidityPatternsTightVariablePackingCheapStructPackingExample);
+  deployer.deploy(fravollSolidityPatternsTightVariablePackingExpensiveStructPackingExample);
+  deployer.deploy(fravollSolidityPatternsOracleoracle);
+  deployer.deploy(fravollSolidityPatternsStateMachineStateMachine);
+  deployer.deploy(fravollSolidityPatternsMemoryArrayBuildingMemoryArrayBuildingCheap);
+  deployer.deploy(fravollSolidityPatternsMemoryArrayBuildingMemoryArrayBuildingExpensive);
+  deployer.deploy(fravollSolidityPatternsMemoryArrayBuildingMemoryArrayBuilding);
 };
