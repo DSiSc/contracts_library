@@ -69,6 +69,8 @@ var fivedogitSolidityBabyStepsContracts05greeter = artifacts.require("./fivedogi
 
 var vcinlyTheNineBillionNamesOfGodnine = artifacts.require("./vcinly/TheNineBillionNamesOfGod/Nine.sol");
 
+var arachnidSolidityStringutilsSrcStringsTest = artifacts.require("./Arachnid/solidity-stringutils/src/StringsTest.sol");
+
 const sigUtil = require("eth-sig-util")
 
 var alice_vote_hash = sigUtil.typedSignatureHash([{ type: 'string', name: 'Message', value: "Vote for Alice"}])
@@ -156,4 +158,6 @@ module.exports = function(deployer) {
   deployer.deploy(fivedogitSolidityBabyStepsContracts35Coinflipper);
   deployer.deploy(fivedogitSolidityBabyStepsContracts58indexOf);
   deployer.deploy(fivedogitSolidityBabyStepsContracts05greeter, "Hello World!");
+
+  deployer.deploy(arachnidSolidityStringutilsSrcStringsTest);
 };
