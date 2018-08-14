@@ -84,6 +84,9 @@ var ram1991SoliditySmartContractshello = artifacts.require("./ram1991/Solidity-S
 var ram1991SoliditySmartContractsTransferOwnership = artifacts.require("./ram1991/Solidity-Smart-contracts/TransferOwner.sol");
 var ram1991SoliditySmartContractsBasic = artifacts.require("./ram1991/Solidity-Smart-contracts/Basic.sol");
 
+var jdowning100CryptoZombiesZombieFeeding = artifacts.require("./jdowning100/CryptoZombies/ZombieFeeding.sol");
+var jdowning100CryptoZombiesZombieFactory = artifacts.require("./jdowning100/CryptoZombies/ZombieFactory.sol");
+
 const sigUtil = require("eth-sig-util")
 
 var alice_vote_hash = sigUtil.typedSignatureHash([{ type: 'string', name: 'Message', value: "Vote for Alice"}])
@@ -187,4 +190,7 @@ module.exports = function(deployer) {
   deployer.deploy(ram1991SoliditySmartContractshello);
   deployer.deploy(ram1991SoliditySmartContractsTransferOwnership);
   deployer.deploy(ram1991SoliditySmartContractsBasic);
+
+  deployer.deploy(jdowning100CryptoZombiesZombieFeeding);
+  deployer.deploy(jdowning100CryptoZombiesZombieFactory);
 };
