@@ -1,6 +1,6 @@
-import "./Owned.sol";
+import "./BabyOwned.sol";
 
-contract Mortal is Owned {
+contract Mortal is BabyOwned {
     event mortalCalled(string);
     function kill() public {
         emit mortalCalled("mortalCalled");

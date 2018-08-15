@@ -1,4 +1,4 @@
-// import "./Mortal";
+import "./Mortal.sol";
 
 // contract Descriptor {
     
@@ -8,7 +8,7 @@
 // 	}
 // }
 
-contract ArrayPasser /* is Mortal */ {
+contract ArrayPasser is Mortal {
 
     address creator;
     
