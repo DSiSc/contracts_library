@@ -1,1 +1,3 @@
-contracts_library/build/
+
+authorized/build/
+authorized/node_modules/
