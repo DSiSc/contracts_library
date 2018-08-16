@@ -16,7 +16,7 @@ var willitscaleLearningSolidityTutorial25MultiSigWallet = artifacts.require("./w
 var willitscaleLearningSolidityTutorial26MultiSigWallet = artifacts.require("./willitscale/learning-solidity/tutorial-26/MultiSigWallet.sol");
 
 
-var willitscaleLearningSolidityTutorial09MyToken = artifacts.require("./willitscale/learning-solidity/tutorial-09/MyToken.sol");
+var willitscaleLearningSolidityTutorial09MyToken = artifacts.require("./willitscale/learning-solidity/tutorial-09/MyFirstToken.sol");
 var willitscaleLearningSolidityTutorial10MyFirstToken = artifacts.require("./willitscale/learning-solidity/tutorial-10/MyFirstToken.sol");
 var willitscaleLearningSolidityTutorial02myfirstcontract = artifacts.require("./willitscale/learning-solidity/tutorial-02/MyFirstContract.sol");
 var willitscaleLearningSolidityTutorial07TestStrings = artifacts.require("./willitscale/learning-solidity/tutorial-07/TestStrings.sol");
