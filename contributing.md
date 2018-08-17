@@ -62,7 +62,7 @@ Then copy everything under the original project test folder to the path.
 
 when execute `truffle compile`, `truffle migrate`, `truffle test`, if the nodejs module can't find the error, for example, the `hello` module can't find it, execute "npm install --save hello", the hello module will be installed, and it will be automatically Update the package.json file.
 
-##Non-truffle project
+## Non-truffle project
 
 Non-truffle projects only need to create the original repository name folder under authorized contracts, and then copy all the files under the original repository to this folder.
 finally edit 2_deploy_contracts.js will need to deploy the sol deployment.
