@@ -5,7 +5,7 @@ The collected contract items are placed at https://github.com/DSiSc/contracts_li
 The combined projects are placed at https://github.com/DSiSc/contracts_library/tree/master/authorized.
 How to merge them? The following description will be made. The collected smart contract project may be a truffle project itself, or it may not be a truffle project, so it needs to be treated separately.
 
-##Truffle project
+## Truffle project
 
 The structure of a truffle project is as follows:
 * contracts/:solidity contract file folder
