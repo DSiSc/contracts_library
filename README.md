@@ -3,7 +3,7 @@
 this is a smart contract library
 ## THANKS
 
-This repository collects other open source smart contracts reposity from GitHub. Thanks to the original repositoty contributors. It contains the following original repository:
+This repository collects other open source smart contracts reposity from GitHub. Thanks to the original repository contributors. It contains the following original repository:
 * https://github.com/Arachnid/solidity-stringutils
 * https://github.com/OpenZeppelin/openzeppelin-solidity
 * https://github.com/ShubhamTatvamasi/LoopDefender
